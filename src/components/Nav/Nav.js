@@ -10,9 +10,29 @@ const Nav = () => (
             User Home
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/info">
             Info Page
+          </Link>
+        </li> */}
+        <li>
+          <Link to="/collection">
+            Your Collecshion
+          </Link>
+        </li>
+        <li>
+          <Link to="/favorites">
+            Your FAvvvvs
+          </Link>
+        </li>
+        <li>
+          <Link to="/genre">
+           jean val genres
+          </Link>
+        </li>
+        <li>
+          <Link to="/newGame">
+           newgame+
           </Link>
         </li>
       </ul>

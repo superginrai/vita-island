@@ -13,10 +13,14 @@ import UserPage from './components/UserPage/UserPage';
 import InfoPage from './components/InfoPage/InfoPage';
 
 import './styles/main.css';
+import CollectionView from './components/CollectionView/CollectionView';
+import FavoritesView from './components/FavoritesView/FavoritesView';
+import GenreView from './components/GenreView/GenreView';
+import NewGameView from './components/NewGameView/NewGameView';
 
 const App = () => (
   <div>
-    <Header title="Project Base" />
+    <Header title="VITA;island" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -36,8 +40,24 @@ const App = () => (
           path="/info"
           component={InfoPage}
         />
+          <Route
+          path="/collection"
+          component={CollectionView}
+        />
+          <Route
+          path="/favorites"
+          component={FavoritesView}
+        />
+          <Route
+          path="/genre"
+          component={GenreView}
+        />
+         <Route
+          path="/newGame"
+          component={NewGameView}
+        />
         {/* OTHERWISE (no path!) */}
-        <Route render={() => <h1>404</h1>} />
+        <Route render={() => <h1>4O4</h1>} />
 
       </Switch>
     </Router>
