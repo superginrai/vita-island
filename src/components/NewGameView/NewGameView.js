@@ -16,7 +16,6 @@ class NewGameView extends Component {
             newGame: {
                 title: '',
                 genre_id: '',
-                // person_id: this.props.user.id,
             }
         }
     }
