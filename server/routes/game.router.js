@@ -38,4 +38,21 @@ router.post('/', (req, res) => {
 
 });
 
+router.get('/genre/:id', (req, res) => {
+    console.log('GET genre route', req.user.id, req.params.id);
+    if (req.isAuthenticated()) {
+        let queryText = `SELECT * FROM game WHERE person_id = $1 AND genre_id = $2`;
+        pool.query(queryText, [req.user.id, req.params.id])
+            .then((result) => {
+                res.send(result.rows);
+            }).catch((error) => {
+                console.log('error on games GET: ', error);
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+
+});
+
 module.exports = router;
