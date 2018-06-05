@@ -17,10 +17,12 @@ import CollectionView from './components/CollectionView/CollectionView';
 import FavoritesView from './components/FavoritesView/FavoritesView';
 import GenreView from './components/GenreView/GenreView';
 import NewGameView from './components/NewGameView/NewGameView';
+import ButtonAppBar from './components/ButtonAppBar/ButtonAppBar';
 
 const App = () => (
   <div>
-    <Header title="VITA;island" />
+    {/* <ButtonAppBar/> */}
+    {/* <Header title="VITA;island" /> */}
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />

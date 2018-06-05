@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../redux/actions/userActions';
 import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
+import DropDown from '../DropDown/DropDown';
+import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -71,7 +73,7 @@ class GenreView extends Component {
 
         return (
             <div>
-                <Nav />
+           <ButtonAppBar/>
                 {content}
             </div>
         );

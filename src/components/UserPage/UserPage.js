@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Nav from '../../components/Nav/Nav';
-
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
+import DropDown from '../DropDown/DropDown';
+import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 
 
 const mapStateToProps = state => ({
@@ -36,7 +36,7 @@ class UserPage extends Component {
           <h1
             id="welcome"
           >
-            Welcome, { this.props.user.userName }!
+            Welcome, {this.props.user.userName}!
           </h1>
           <button
             onClick={this.logout}
@@ -49,8 +49,8 @@ class UserPage extends Component {
 
     return (
       <div>
-        <Nav />
-        { content }
+        <ButtonAppBar />
+        {content}
       </div>
     );
   }
