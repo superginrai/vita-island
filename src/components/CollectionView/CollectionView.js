@@ -50,14 +50,14 @@ class CollectionView extends Component {
     render() {
         let content = null;
 
-        // if (this.props.user.username) {
+        //   if (this.props.user.username) {
             content = (
                 <div className="Collection">
-                    <ul>{this.state.gameList.map(game =>
-                       <li key={game.id}> <GameCard title={game.title}/></li>)}</ul>
+                    {this.state.gameList.map(game =>
+                        <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite}/>)}
                 </div>
             );
-        // }
+        //   }
 
         return (
             <div>

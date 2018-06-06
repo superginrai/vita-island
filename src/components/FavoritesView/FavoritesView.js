@@ -4,6 +4,7 @@ import { fetchUser } from '../../redux/actions/userActions';
 import axios from 'axios';
 import DropDown from '../DropDown/DropDown';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
+import GameCard from '../GameCard/GameCard';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -59,9 +60,9 @@ class FavoritesView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Favorites">
-                <ul>{this.state.gameList.map(game =>
-                    <li key={game.id}>{game.title}</li>)}</ul>
-            </div>
+            {this.state.gameList.map(game =>
+                <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite}/>)}
+        </div>
         );
         //  }
 
