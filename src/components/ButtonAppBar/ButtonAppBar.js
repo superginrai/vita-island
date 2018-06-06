@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import DropDown from '../DropDown/DropDown';
+import FiberNew from '@material-ui/icons/FiberNew';
+import Games from '@material-ui/icons/Games';
 
 const styles = {
     root: {
@@ -34,9 +36,9 @@ function ButtonAppBar(props) {
           </IconButton> */}
                     <DropDown />
                     <Typography variant="title" color="inherit" className={classes.flex}>
-                        Title
+                        VITA;island
           </Typography>
-                    <Button color="inherit">Login</Button>
+                    <IconButton component="a" href="/newGame"color="inherit"><Games/><FiberNew/></IconButton>
                 </Toolbar>
             </AppBar>
         </div>

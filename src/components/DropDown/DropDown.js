@@ -75,9 +75,6 @@ class DropDown extends React.Component {
                                 <Paper>
                                     <MenuList role="menu">
                                         <Nav />
-                                        {/* <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                                        <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                                        <MenuItem onClick={this.handleClose}>Logout</MenuItem> */}
                                     </MenuList>
                                 </Paper>
                             </Grow>

@@ -18,42 +18,21 @@ const styles = theme => ({
 const Nav = (props) => {
   const { classes } = props;
   return (
-    // <div className="navbar">
     <div className={classes.root}>
-      {/* <div> */}
-      <List>
-        <ListItem>
-          <Link to="/user">
+      <List component="nav">
+        <ListItem button component="a" href="/user">
           <ListItemText primary="User Home" />
-        </Link>
         </ListItem>
-        {/* <li>
-        <Link to="/info">
-          Info Page
-        </Link>
-      </li> */}
-        <ListItem>
-          <Link to="/collection">
-            <ListItemText primary="Your Collection" />
-          </Link>
+        <ListItem button component="a" href="/collection">
+          <ListItemText primary="Your Collection" />
         </ListItem>
-        <ListItem>
-          <Link to="/favorites">
-            <ListItemText primary="Favorites" />
-          </Link>
+        <ListItem button component="a" href="/favorites">
+          <ListItemText primary="Favorites" />
         </ListItem>
-        <ListItem>
-          <Link to="/genre">
-            <ListItemText primary="Genres" />
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link to="/newGame">
-          <ListItemText primary="NewGame+" />
-        </Link>
+        <ListItem button component="a" href="/genre">
+          <ListItemText primary="Genres" />
         </ListItem>
       </List>
-      {/* </div> */}
     </div>
   )
 };
