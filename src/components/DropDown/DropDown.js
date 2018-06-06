@@ -13,6 +13,8 @@ import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+// import { triggerLogout } from '../../redux/actions/loginActions';
+// import { USER_ACTIONS } from '../../redux/actions/userActions';
 import Nav from '../Nav/Nav';
 
 const styles = theme => ({
@@ -74,7 +76,7 @@ class DropDown extends React.Component {
                             <Grow in={open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
                                 <Paper>
                                     <MenuList role="menu">
-                                        <Nav />
+                                        <Nav/>
                                     </MenuList>
                                 </Paper>
                             </Grow>

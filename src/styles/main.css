@@ -13,14 +13,14 @@ body {
     color: #ece7e7;
 }
 
-form {
+/* form {
     background-color: #dbd5d5;
     width: 30%;
     height: 250px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
-}
+} */
 
 input {
     margin: 5px;
@@ -39,13 +39,13 @@ input[type="submit"] {
     margin-left: 10px;
 }
 
-.message:nth-child(odd) {
+/* .message:nth-child(odd) {
      background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
     background-color: #f8f8f8;
-}
+} */
 
 .navbar {
   background-color: #00acb0;
@@ -59,10 +59,6 @@ ul {
     padding: 0;
     overflow: hidden;
 }
-
-/* li {
-    float: left;
-} */
 
 li a {
     display: block;

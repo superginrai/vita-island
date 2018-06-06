@@ -5,6 +5,7 @@ import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
 import DropDown from '../DropDown/DropDown';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
+import GameCard from '../GameCard/GameCard';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -61,19 +62,19 @@ class GenreView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Genre">
-                <ul>{this.state.gameList.map(game =>
-                    <li key={game.id}>{game.title}</li>)}</ul>
+                {this.state.gameList.map(game =>
+                    <GameCard key={game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} />)}
                 <form onSubmit={this.getGenre}>
                     genre #?: <input className="input" onChange={this.handleChange()} value={this.state.genre} placeholder='genre' />
                     <input className="button" type="submit" value="DEPLOY IT" />
                 </form>
             </div>
-         );
+        );
         //  }
 
         return (
             <div>
-           <ButtonAppBar/>
+                <ButtonAppBar />
                 {content}
             </div>
         );
