@@ -33,8 +33,6 @@ class NewGameView extends Component {
     addNewGame = event => {
         console.log(this.state.newGame);
         event.preventDefault();
-        // const action = { type: 'ADD_ITEM', payload: this.state.newItem }
-        // this.props.dispatch(action);
         axios.post('/api/game', this.state.newGame).then(response => {
             console.log(response);
         }).catch(error => {

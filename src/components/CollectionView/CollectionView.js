@@ -5,6 +5,7 @@ import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
 import DropDown from '../DropDown/DropDown';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
+import GameCard from '../GameCard/GameCard';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -53,7 +54,7 @@ class CollectionView extends Component {
             content = (
                 <div className="Collection">
                     <ul>{this.state.gameList.map(game =>
-                        <li key={game.id}>{game.title}</li>)}</ul>
+                       <li key={game.id}> <GameCard title={game.title}/></li>)}</ul>
                 </div>
             );
         // }

@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
-
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -16,6 +25,7 @@ class LoginPage extends Component {
     this.state = {
       username: '',
       password: '',
+      showPassword: false,
     };
   }
 
@@ -23,7 +33,7 @@ class LoginPage extends Component {
     this.props.dispatch(clearError());
   }
 
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.userName) {
       this.props.history.push('/user');
@@ -46,6 +56,15 @@ class LoginPage extends Component {
     });
   }
 
+  handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
+  handleClickShowPassword = () => {
+    this.setState({ showPassword: !this.state.showPassword });
+  };
+
+
   renderAlert() {
     if (this.props.login.message !== '') {
       return (
@@ -53,7 +72,7 @@ class LoginPage extends Component {
           className="alert"
           role="alert"
         >
-          { this.props.login.message }
+          {this.props.login.message}
         </h2>
       );
     }
@@ -63,30 +82,45 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        { this.renderAlert() }
+        {this.renderAlert()}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
+          <h1>Log In</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
+            {/* <label htmlFor="username"> */}
+            <FormControl>
+              <InputLabel htmlFor="username">
+                Username:</InputLabel>
+              <Input
+                id="username"
                 value={this.state.username}
+                // type="text"
+                // name="username"
+                // value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
-            </label>
+            </FormControl>
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
+            <FormControl>
+              <InputLabel htmlFor="password">
+                Password:</InputLabel>
+              <Input
+                id="password"
+                type={this.state.showPassword ? 'text' : 'password'}
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                    >
+                      {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
-            </label>
+            </FormControl>
           </div>
           <div>
             <input

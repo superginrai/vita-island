@@ -20,8 +20,8 @@ const Nav = (props) => {
   return (
     <div className={classes.root}>
       <List component="nav">
-        <ListItem button component="a" href="/user">
-          <ListItemText primary="User Home" />
+        <ListItem button component="a" href="/home">
+          <ListItemText primary="Log Out" />
         </ListItem>
         <ListItem button component="a" href="/collection">
           <ListItemText primary="Your Collection" />
