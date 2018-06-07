@@ -88,7 +88,6 @@ class RegisterPage extends Component {
               <InputLabel htmlFor="username">
                 Username:</InputLabel>
               <Input
-                // type="text"
                 id="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
