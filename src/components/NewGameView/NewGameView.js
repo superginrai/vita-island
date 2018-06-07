@@ -35,7 +35,7 @@ class NewGameView extends Component {
         });
     }
 
-    handleGenre = (genre) => event => {
+    handleGenre = (genre) => {
         this.setState({
             newGame: {
                 ...this.state.newGame,

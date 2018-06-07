@@ -38,6 +38,23 @@ router.post('/', (req, res) => {
 
 });
 
+router.delete('/', (req, res) => {
+    console.log('DELETE game route');
+    if (req.isAuthenticated() && req.query.person_id == req.user.id) {
+        let queryText = `DELETE FROM game WHERE id = $1`;
+        pool.query(queryText, [req.query.id])
+            .then(() => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on DELETE: ', error)
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 router.get('/genre/:id', (req, res) => {
     console.log('GET genre route', req.user.id, req.params.id);
     if (req.isAuthenticated()) {

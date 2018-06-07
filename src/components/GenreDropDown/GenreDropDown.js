@@ -37,9 +37,9 @@ class GenreDropDown extends React.Component {
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                 >
-                    <MenuItem onClick={this.props.handleGenre(4)} value='4'>Otome</MenuItem>
-                    <MenuItem onClick={this.props.handleGenre(7)} value='7'>RPG</MenuItem>
-                    <MenuItem onClick={this.props.handleGenre(12)} value='12' >Visual Novel</MenuItem>
+                    <MenuItem onClick={() => this.props.handleGenre(4)} >Otome</MenuItem>
+                    <MenuItem onClick={() => this.props.handleGenre(7)} >RPG</MenuItem>
+                    <MenuItem onClick={() => this.props.handleGenre(12)} >Visual Novel</MenuItem>
                 </Menu>
             </div>
         );

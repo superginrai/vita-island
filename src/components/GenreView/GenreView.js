@@ -24,11 +24,16 @@ class GenreView extends Component {
             genre: '',
         };
     }
-
-    getGenre = (event) => {
+// handleGenre = genre => {
+//     this.props.dispatch({
+//         type: 'GET_GENRE',
+//         payload: genre,
+//     })
+// }
+    handleGenre = (genre_id) => {
         // event.preventDefault();
-        const id = this.state.genre
-        axios.get(`/api/game/genre/${id}`)
+        // const id = this.state.genre
+        axios.get(`/api/game/genre/${genre_id}`)
             .then((response) => {
                 console.log('ber?')
                 console.log(response.data);
@@ -41,12 +46,24 @@ class GenreView extends Component {
             })
     }
 
-    handleGenre = (genre_id) => event => {
-        this.setState({
-            genre: genre_id,
-        })
-        this.getGenre();
-    }
+    deleteGame = game => {
+        axios.delete('/api/game', { params: {id: game.id, person_id: game.person_id }})
+            .then((response) => {
+                console.log(response);
+                this.handleGenre(game.genre_id);
+            })
+            .catch((error) => {
+                console.log('error on delete', error);
+
+            })
+    };
+
+    // handleGenre = (genre_id) => event => {
+    //     this.setState({
+    //         genre: genre_id,
+    //     })
+    //     this.getGenre();
+    // }
     // handleChange = propertyName => event => {
     //     event.preventDefault();
     //     this.setState({
@@ -104,7 +121,7 @@ class GenreView extends Component {
                     <MenuItem onClick={this.handleChange()} value='12'>Visual Novel</MenuItem>
                 </Menu> */}
                 {this.state.gameList.map(game =>
-                    <GameCard key={game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} />)}
+                    <GameCard key={game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame}/>)}
                 {/* <form onSubmit={this.getGenre}>
                     genre #?: <input className="input" onChange={this.handleChange()} value={this.state.genre} placeholder='genre' />
                     <input className="button" type="submit" value="DEPLOY IT" />

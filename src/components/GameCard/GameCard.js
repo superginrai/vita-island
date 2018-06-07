@@ -40,7 +40,7 @@ function GameCard(props) {
           <Button size="small" color="primary">
             FAVORITE!!
           </Button>
-          <Button size="small" color="primary">
+          <Button onClick={() => props.delete(props.game)} size="small" color="primary">
             BALEETED!!
           </Button>
         </CardActions>
