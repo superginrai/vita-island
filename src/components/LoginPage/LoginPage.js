@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+// import VitaLove from '../../../public/images/vitaLove';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -84,56 +85,57 @@ class LoginPage extends Component {
       <div>
         {this.renderAlert()}
         <form onSubmit={this.login}>
-          <h1>Log In</h1>
+          <h1>Welcome to VITA;island</h1>
           <div>
-            {/* <label htmlFor="username"> */}
-            <FormControl>
-              <InputLabel htmlFor="username">
-                Username:</InputLabel>
-              <Input
-                id="username"
-                value={this.state.username}
-                // type="text"
-                // name="username"
-                // value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+            <img src='images/vitaLove.jpg' width="400" />
+              {/* <label htmlFor="username"> */}
+              <FormControl>
+                <InputLabel htmlFor="username">
+                  Username:</InputLabel>
+                <Input
+                  id="username"
+                  value={this.state.username}
+                  // type="text"
+                  // name="username"
+                  // value={this.state.username}
+                  onChange={this.handleInputChangeFor('username')}
+                />
+              </FormControl>
+          </div>
+            <div>
+              <FormControl>
+                <InputLabel htmlFor="password">
+                  Password:</InputLabel>
+                <Input
+                  id="password"
+                  type={this.state.showPassword ? 'text' : 'password'}
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="Toggle password visibility"
+                        onClick={this.handleClickShowPassword}
+                      >
+                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </div>
+            <div>
+              <input
+                type="submit"
+                name="submit"
+                value="Log In"
               />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <InputLabel htmlFor="password">
-                Password:</InputLabel>
-              <Input
-                id="password"
-                type={this.state.showPassword ? 'text' : 'password'}
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="Toggle password visibility"
-                      onClick={this.handleClickShowPassword}
-                    >
-                      {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-          </div>
-          <div>
-            <input
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
-            <Link to="/register">Register</Link>
-          </div>
+              <Link to="/register">Register</Link>
+            </div>
         </form>
       </div>
-    );
-  }
-}
-
-export default connect(mapStateToProps)(LoginPage);
+        );
+      }
+    }
+    
+    export default connect(mapStateToProps)(LoginPage);

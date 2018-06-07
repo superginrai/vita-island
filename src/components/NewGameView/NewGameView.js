@@ -4,6 +4,11 @@ import { fetchUser } from '../../redux/actions/userActions';
 import axios from 'axios';
 import DropDown from '../DropDown/DropDown';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import GenreDropDown from '../GenreDropDown/GenreDropDown';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -28,6 +33,15 @@ class NewGameView extends Component {
                 [propertyName]: event.target.value,
             }
         });
+    }
+
+    handleGenre = (genre) => {
+        this.setState({
+            newGame: {
+                ...this.state.newGame,
+                genre_id: genre,
+            }
+        })
     }
 
     addNewGame = event => {
@@ -67,9 +81,22 @@ class NewGameView extends Component {
             <div className="add-item-container">
 
                 <form onSubmit={this.addNewGame}>
-                    add a title: <input className="input" onChange={this.handleChange('title')} value={this.state.newGame.title} placeholder='title' />
-                    <br />
-                    add genre number: <input className="input" onChange={this.handleChange('genre_id')} value={this.state.newGame.genre_id} placeholder='genre' />
+                    <div>
+                        <FormControl>
+                            <InputLabel htmlFor="username">
+                                Title:</InputLabel>
+                            <Input
+                                id="title"
+                                value={this.state.newGame.title}
+                                onChange={this.handleChange('title')}
+                            />
+                        </FormControl>
+                    </div>
+                    <div>
+                        <div>
+                            <GenreDropDown handleGenre={this.handleGenre} />
+                        </div>
+                    </div>
                     <input className="button" type="submit" value="DEPLOY IT" />
                 </form>
             </div>

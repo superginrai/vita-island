@@ -34,6 +34,18 @@ class FavoritesView extends Component {
             })
     }
 
+    deleteGame = game => {
+        axios.delete('/api/game', { params: {id: game.id, person_id: game.person_id }})
+            .then((response) => {
+                console.log(response);
+                this.getFavorites();
+            })
+            .catch((error) => {
+                console.log('error on delete', error);
+
+            })
+    };
+
     // handleChange = propertyName => event => {
     //     event.preventDefault();
     //     this.setState({
@@ -61,7 +73,7 @@ class FavoritesView extends Component {
         content = (
             <div className="Favorites">
             {this.state.gameList.map(game =>
-                <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite}/>)}
+                <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame}/>)}
         </div>
         );
         //  }

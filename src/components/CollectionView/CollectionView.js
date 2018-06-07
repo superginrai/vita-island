@@ -33,6 +33,17 @@ class CollectionView extends Component {
             })
     }
 
+    deleteGame = game => {
+        axios.delete('/api/game', { params: {id: game.id, person_id: game.person_id }})
+            .then((response) => {
+                console.log(response);
+                this.getUsersGames();
+            })
+            .catch((error) => {
+                console.log('error on delete', error);
+
+            })
+    };
 
 
     componentDidMount() {
@@ -51,17 +62,17 @@ class CollectionView extends Component {
         let content = null;
 
         //   if (this.props.user.username) {
-            content = (
-                <div className="Collection">
-                    {this.state.gameList.map(game =>
-                        <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite}/>)}
-                </div>
-            );
+        content = (
+            <div className="Collection">
+                {this.state.gameList.map(game =>
+                    <GameCard key={game.id} game={game} title={game.title} image_url={game.image_url} favorite={game.favorite} delete={this.deleteGame} />)}
+            </div>
+        );
         //   }
 
         return (
             <div>
-               <ButtonAppBar/>
+                <ButtonAppBar />
                 {content}
             </div>
         );
