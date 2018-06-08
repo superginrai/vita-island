@@ -10,11 +10,11 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth: 400,
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    height: 430,
+    //paddingTop: '90%'//'56.25%', // 16:9
   },
 };
 
@@ -25,7 +25,7 @@ function GameCard(props) {
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image="images/CeleryPeople.jpg"
+          image="images/Banana.jpg"
           title={props.complete}
         />
         <CardContent>
@@ -33,11 +33,11 @@ function GameCard(props) {
             {props.title}
           </Typography>
           <Typography component="p">
-            Stuff
+              
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button onClick={() => props.makeFavorite(props.game)} size="small" color="primary">
             FAVORITE!!
           </Button>
           <Button onClick={() => props.delete(props.game)} size="small" color="primary">

@@ -55,6 +55,24 @@ router.delete('/', (req, res) => {
     }
 });
 
+router.put('/', (req, res) => {
+    console.log('PUT game route');
+    // if (req.isAuthenticated() && req.query.person_id == req.user.id) {
+        let queryText = `UPDATE game SET favorite=$1 WHERE id=$2`;
+        console.log(req.body);
+        pool.query(queryText, [req.body.favorite, req.body.id])
+            .then(() => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on PUT: ', error)
+                res.sendStatus(500);
+            })
+    // } else {
+    //     res.sendStatus(403);
+    // }
+});
+
 router.get('/genre/:id', (req, res) => {
     console.log('GET genre route', req.user.id, req.params.id);
     if (req.isAuthenticated()) {

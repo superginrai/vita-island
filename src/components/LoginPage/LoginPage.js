@@ -37,7 +37,7 @@ class LoginPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.userName) {
-      this.props.history.push('/user');
+      this.props.history.push('/collection');
     }
   }
 
@@ -88,16 +88,13 @@ class LoginPage extends Component {
           <h1>Welcome to VITA;island</h1>
           <div>
             <img src='images/vitaLove.jpg' width="400" />
-              {/* <label htmlFor="username"> */}
+            <h4>Please Log In</h4>
               <FormControl>
                 <InputLabel htmlFor="username">
                   Username:</InputLabel>
                 <Input
                   id="username"
                   value={this.state.username}
-                  // type="text"
-                  // name="username"
-                  // value={this.state.username}
                   onChange={this.handleInputChangeFor('username')}
                 />
               </FormControl>

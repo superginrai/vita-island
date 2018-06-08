@@ -46,6 +46,42 @@ class FavoritesView extends Component {
             })
     };
 
+    makeFavorite = (game) => {
+        console.log(game.favorite, 'fav clicked');
+        if (game.favorite === true) {
+            console.log('taco click');
+            const body = {
+                id: game.id,
+                person_id: game.person_id,
+                favorite: false,
+            }
+            axios.put('/api/game', body)
+                .then((response) => {
+                    console.log(response);
+                    this.getFavorites();
+                })
+                .catch((error) => {
+                    console.log('error on favorite put', error);
+                });
+
+        } else {
+            const body = {
+                id: game.id,
+                person_id: game.person_id,
+                favorite: true,
+            }
+
+            axios.put('/api/game', body)
+                .then((response) => {
+                    console.log(response);
+                    this.getFavorites();
+                })
+                .catch((error) => {
+                    console.log('error on favorite put', error);
+                });
+        }
+    };
+
     // handleChange = propertyName => event => {
     //     event.preventDefault();
     //     this.setState({
@@ -73,7 +109,7 @@ class FavoritesView extends Component {
         content = (
             <div className="Favorites">
             {this.state.gameList.map(game =>
-                <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame}/>)}
+                <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame} makeFavorite={this.makeFavorite}/>)}
         </div>
         );
         //  }

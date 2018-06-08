@@ -82,8 +82,10 @@ class RegisterPage extends Component {
       <div>
         {this.renderAlert()}
         <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+          <h1>Welcome to VITA;island</h1>
           <div>
+          <img src='images/vitaLove.jpg' width="400" />
+          <h4>Please Register</h4>
             <FormControl>
               <InputLabel htmlFor="username">
                 Username:</InputLabel>
