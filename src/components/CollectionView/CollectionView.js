@@ -113,7 +113,7 @@ class CollectionView extends Component {
 
         return (
             <div>
-                <ButtonAppBar currentView="Your Collection"/>
+                <ButtonAppBar currentView="Your;Collection"/>
                 {content}
             </div>
         );

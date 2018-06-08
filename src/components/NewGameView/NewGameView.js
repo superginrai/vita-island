@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import GenreDropDown from '../GenreDropDown/GenreDropDown';
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -66,7 +67,6 @@ class NewGameView extends Component {
         this.props.dispatch(fetchUser());
     }
 
-    //you better be logged in or ELSE
     componentDidUpdate() {
         if (!this.props.user.isLoading && this.props.user.userName === null) {
             this.props.history.push('home');
@@ -79,10 +79,10 @@ class NewGameView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="add-item-container">
-
+                <ButtonAppBar />
                 <form onSubmit={this.addNewGame}>
                     <div>
-                        <FormControl fullWidth>
+                        <FormControl >
                             <InputLabel htmlFor="username">
                                 Title:</InputLabel>
                             <Input
@@ -94,10 +94,13 @@ class NewGameView extends Component {
                     </div>
                     <div>
                         <div>
-                            <GenreDropDown fullWidth handleGenre={this.handleGenre} />
+                            <GenreDropDown handleGenre={this.handleGenre} />
                         </div>
                     </div>
-                    <input className="button" type="submit" value="DEPLOY IT" />
+                    {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
+                    <Button variant="contained" size="large" color="primary" type="submit">
+                        ADD TO YOUR COLLECTION
+        </Button>
                 </form>
             </div>
         );
@@ -105,7 +108,6 @@ class NewGameView extends Component {
 
         return (
             <div>
-                <ButtonAppBar />
                 {content}
             </div>
         );

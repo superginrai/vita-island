@@ -137,9 +137,10 @@ class GenreView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Genre">
-                <div>
+                          <ButtonAppBar addOn={<GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre}/>} currentView="Genre:"/>
+                {/* <div>
                     <GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />
-                </div>
+                </div> */}
                 {/* <Button
                     aria-owns={anchorEl ? 'simple-menu' : null}
                     aria-haspopup="true"
@@ -169,7 +170,6 @@ class GenreView extends Component {
 
         return (
             <div>
-                <ButtonAppBar currentView="Genre"/>
                 {content}
             </div>
         );

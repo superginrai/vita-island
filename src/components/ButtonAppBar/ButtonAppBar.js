@@ -18,7 +18,7 @@ const styles = {
     flex: {
         flex: 1,
     },
-    menuButton: {
+    IconButton: {
         marginLeft: -12,
         marginRight: 20,
     },
@@ -35,7 +35,10 @@ function ButtonAppBar(props) {
                         {/* VITA;island */}
                         {props.currentView}
                     </Typography>
-                    <IconButton component="a" href="/newGame" margin-left="20px" color="inherit"><Games /><FiberNew /></IconButton>
+                    <Typography variant="title" color="inherit" className={classes.flex}>
+                        {props.addOn}
+                    </Typography>
+                    <IconButton component="a" href="/newGame" color="inherit"><Games /><FiberNew /></IconButton>
                 </Toolbar>
             </AppBar>
         </div>
