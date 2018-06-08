@@ -75,14 +75,14 @@ class NewGameView extends Component {
 
     render() {
         let content = null;
-
+        // const { classes } = props;
         // if (this.props.user.username) {
         content = (
             <div className="add-item-container">
 
                 <form onSubmit={this.addNewGame}>
                     <div>
-                        <FormControl>
+                        <FormControl fullWidth>
                             <InputLabel htmlFor="username">
                                 Title:</InputLabel>
                             <Input
@@ -94,7 +94,7 @@ class NewGameView extends Component {
                     </div>
                     <div>
                         <div>
-                            <GenreDropDown handleGenre={this.handleGenre} />
+                            <GenreDropDown fullWidth handleGenre={this.handleGenre} />
                         </div>
                     </div>
                     <input className="button" type="submit" value="DEPLOY IT" />

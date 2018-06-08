@@ -24,7 +24,7 @@ const styles = {
     },
 };
 
-function ButtonAppBar(props, { currentView }) {
+function ButtonAppBar(props) {
     const { classes } = props;
     return (
         <div className={classes.root}>
@@ -32,10 +32,10 @@ function ButtonAppBar(props, { currentView }) {
                 <Toolbar>
                     <DropDown />
                     <Typography variant="title" color="inherit" className={classes.flex}>
-                        VITA;island
-          </Typography>
-                    <h2>{currentView}</h2>
-                    <IconButton component="a" href="/newGame" color="inherit"><Games /><FiberNew /></IconButton>
+                        {/* VITA;island */}
+                        {props.currentView}
+                    </Typography>
+                    <IconButton component="a" href="/newGame" margin-left="20px" color="inherit"><Games /><FiberNew /></IconButton>
                 </Toolbar>
             </AppBar>
         </div>

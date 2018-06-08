@@ -24,6 +24,7 @@ class GenreView extends Component {
             genre: '',
         };
     }
+
     // handleGenre = genre => {
     //     this.props.dispatch({
     //         type: 'GET_GENRE',
@@ -137,7 +138,7 @@ class GenreView extends Component {
         content = (
             <div className="Genre">
                 <div>
-                    <GenreDropDown handleGenre={this.handleGenre} />
+                    <GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />
                 </div>
                 {/* <Button
                     aria-owns={anchorEl ? 'simple-menu' : null}
@@ -168,7 +169,7 @@ class GenreView extends Component {
 
         return (
             <div>
-                <ButtonAppBar />
+                <ButtonAppBar currentView="Genre"/>
                 {content}
             </div>
         );

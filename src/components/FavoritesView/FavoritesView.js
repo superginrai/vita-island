@@ -116,7 +116,7 @@ class FavoritesView extends Component {
 
         return (
             <div>
-                <ButtonAppBar />
+                <ButtonAppBar currentView="Favorites"/>
                 {content}
             </div>
         );
