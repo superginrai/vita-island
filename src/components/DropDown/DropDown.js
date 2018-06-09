@@ -63,7 +63,6 @@ class DropDown extends React.Component {
                                 aria-haspopup="true"
                                 onClick={this.handleToggle} color="inherit" aria-label="Menu">
                                 <MenuIcon />
-
                             </IconButton>
                         </div>
                     </Target>

@@ -24,12 +24,13 @@ class GenreView extends Component {
             genre: '',
         };
     }
-// handleGenre = genre => {
-//     this.props.dispatch({
-//         type: 'GET_GENRE',
-//         payload: genre,
-//     })
-// }
+
+    // handleGenre = genre => {
+    //     this.props.dispatch({
+    //         type: 'GET_GENRE',
+    //         payload: genre,
+    //     })
+    // }
     handleGenre = (genre_id) => {
         // event.preventDefault();
         // const id = this.state.genre
@@ -47,7 +48,7 @@ class GenreView extends Component {
     }
 
     deleteGame = game => {
-        axios.delete('/api/game', { params: {id: game.id, person_id: game.person_id }})
+        axios.delete('/api/game', { params: { id: game.id, person_id: game.person_id } })
             .then((response) => {
                 console.log(response);
                 this.handleGenre(game.genre_id);
@@ -56,6 +57,42 @@ class GenreView extends Component {
                 console.log('error on delete', error);
 
             })
+    };
+
+    makeFavorite = (game) => {
+        console.log(game.favorite, 'fav clicked');
+        if (game.favorite === true) {
+            console.log('taco click');
+            const body = {
+                id: game.id,
+                person_id: game.person_id,
+                favorite: false,
+            }
+            axios.put('/api/game', body)
+                .then((response) => {
+                    console.log(response);
+                    this.handleGenre(game.genre_id);
+                })
+                .catch((error) => {
+                    console.log('error on favorite put', error);
+                });
+
+        } else {
+            const body = {
+                id: game.id,
+                person_id: game.person_id,
+                favorite: true,
+            }
+
+            axios.put('/api/game', body)
+                .then((response) => {
+                    console.log(response);
+                    this.handleGenre(game.genre_id);
+                })
+                .catch((error) => {
+                    console.log('error on favorite put', error);
+                });
+        }
     };
 
     // handleGenre = (genre_id) => event => {
@@ -100,9 +137,10 @@ class GenreView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Genre">
-                <div>
-                    <GenreDropDown handleGenre={this.handleGenre} />
-                </div>
+                          <ButtonAppBar addOn={<GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre}/>} currentView="Genre:"/>
+                {/* <div>
+                    <GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />
+                </div> */}
                 {/* <Button
                     aria-owns={anchorEl ? 'simple-menu' : null}
                     aria-haspopup="true"
@@ -121,7 +159,7 @@ class GenreView extends Component {
                     <MenuItem onClick={this.handleChange()} value='12'>Visual Novel</MenuItem>
                 </Menu> */}
                 {this.state.gameList.map(game =>
-                    <GameCard key={game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame}/>)}
+                    <GameCard key={game.id} title={game.title} image_url={game.image_url} genre={game.genre} favorite={game.favorite} game={game} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
                 {/* <form onSubmit={this.getGenre}>
                     genre #?: <input className="input" onChange={this.handleChange()} value={this.state.genre} placeholder='genre' />
                     <input className="button" type="submit" value="DEPLOY IT" />
@@ -132,7 +170,6 @@ class GenreView extends Component {
 
         return (
             <div>
-                <ButtonAppBar />
                 {content}
             </div>
         );

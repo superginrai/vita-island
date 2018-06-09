@@ -34,7 +34,7 @@ class CollectionView extends Component {
     }
 
     deleteGame = game => {
-        axios.delete('/api/game', { params: {id: game.id, person_id: game.person_id }})
+        axios.delete('/api/game', { params: { id: game.id, person_id: game.person_id } })
             .then((response) => {
                 console.log(response);
                 this.getUsersGames();
@@ -45,6 +45,47 @@ class CollectionView extends Component {
             })
     };
 
+    // makeFavorite = game => {
+    //     if (game.favorite = true) {
+    //         axios.put('/api/game', { params: { id: game.id, favorite: game.favorite } })
+    //     }
+    // }
+
+    makeFavorite = (game) => {
+        console.log(game.favorite, 'fav clicked');
+        if (game.favorite === true) {
+            console.log('taco click');
+            const body = {
+                id: game.id,
+                person_id: game.person_id,
+                favorite: false,
+            }
+            axios.put('/api/game', body)
+                .then((response) => {
+                    console.log(response);
+                    this.getUsersGames();
+                })
+                .catch((error) => {
+                    console.log('error on favorite put', error);
+                });
+
+        } else {
+            const body = {
+                id: game.id,
+                person_id: game.person_id,
+                favorite: true,
+            }
+
+            axios.put('/api/game', body)
+                .then((response) => {
+                    console.log(response);
+                    this.getUsersGames();
+                })
+                .catch((error) => {
+                    console.log('error on favorite put', error);
+                });
+        }
+    };
 
     componentDidMount() {
         this.props.dispatch(fetchUser());
@@ -65,14 +106,14 @@ class CollectionView extends Component {
         content = (
             <div className="Collection">
                 {this.state.gameList.map(game =>
-                    <GameCard key={game.id} game={game} title={game.title} image_url={game.image_url} favorite={game.favorite} delete={this.deleteGame} />)}
+                    <GameCard key={game.id} game={game} title={game.title} image_url={game.image_url} genre={game.genre} favorite={game.favorite} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
             </div>
         );
         //   }
 
         return (
             <div>
-                <ButtonAppBar />
+                <ButtonAppBar currentView="Your;Collection"/>
                 {content}
             </div>
         );

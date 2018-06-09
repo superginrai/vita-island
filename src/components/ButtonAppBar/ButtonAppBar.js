@@ -18,23 +18,30 @@ const styles = {
     flex: {
         flex: 1,
     },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
+    // IconButton: {
+    //     marginLeft: -12,
+    //     marginRight: 20,
+    // },
+    DropDown: {
+        marginRight: 50,
+    }
 };
 
 function ButtonAppBar(props) {
     const { classes } = props;
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar>
-                    <DropDown />
+                    <DropDown className={classes.DropDown}/>
                     <Typography variant="title" color="inherit" className={classes.flex}>
-                        VITA;island
-          </Typography>
-                    <IconButton component="a" href="/newGame"color="inherit"><Games/><FiberNew/></IconButton>
+                        {/* VITA;island */}
+                        {props.currentView}
+                    </Typography>
+                    <Typography variant="title" className={classes.flex}>
+                        {props.addOn}
+                    </Typography>
+                    <IconButton component="a" href="/newGame" color="inherit"><Games /><FiberNew /></IconButton>
                 </Toolbar>
             </AppBar>
         </div>
