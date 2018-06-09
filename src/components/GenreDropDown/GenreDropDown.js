@@ -37,16 +37,16 @@ class GenreDropDown extends React.Component {
         // })
     }
 
-    handleClick = event => {
-        this.setState({ anchorEl: event.currentTarget });
-    };
+    // handleClick = event => {
+    //     this.setState({ anchorEl: event.currentTarget });
+    // };
 
-    handleClose = () => {
-        this.setState({ anchorEl: null });
-    };
+    // handleClose = () => {
+    //     this.setState({ anchorEl: null });
+    // };
 
     render() {
-        const { anchorEl } = this.state;
+        // const { anchorEl } = this.state;
 
         return (
             <div>

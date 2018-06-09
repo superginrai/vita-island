@@ -78,36 +78,41 @@ class NewGameView extends Component {
         // const { classes } = props;
         // if (this.props.user.username) {
         content = (
-            <div className="add-item-container">
-                <ButtonAppBar />
-                <form onSubmit={this.addNewGame}>
-                    <div>
-                        <FormControl >
-                            <InputLabel htmlFor="username">
-                                Title:</InputLabel>
-                            <Input
-                                id="title"
-                                value={this.state.newGame.title}
-                                onChange={this.handleChange('title')}
-                            />
-                        </FormControl>
-                    </div>
-                    <div>
+            <div>
+             <ButtonAppBar />
+             <br/>
+             <br/>
+                <div className="add-item-container">
+                    <form onSubmit={this.addNewGame}>
                         <div>
-                            <GenreDropDown handleGenre={this.handleGenre} />
+                            <FormControl >
+                                <InputLabel htmlFor="username">
+                                    Title:</InputLabel>
+                                <Input
+                                    id="title"
+                                    value={this.state.newGame.title}
+                                    onChange={this.handleChange('title')}
+                                />
+                            </FormControl>
                         </div>
-                    </div>
-                    {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
-                    <Button variant="contained" size="large" color="primary" type="submit">
-                        ADD TO YOUR COLLECTION
+                        <div>
+                            <div>
+                                <GenreDropDown handleGenre={this.handleGenre} />
+                            </div>
+                        </div>
+                        {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
+                        <Button variant="contained" size="large" color="primary" type="submit">
+                            ADD TO YOUR COLLECTION
         </Button>
-                </form>
+                    </form>
+                </div>
             </div>
         );
         // }
 
         return (
             <div>
+                   
                 {content}
             </div>
         );

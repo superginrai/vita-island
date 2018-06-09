@@ -9,14 +9,14 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import DeleteForever from '@material-ui/icons/DeleteForever';
-import Favorite_Border from '@material-ui/icons/FavoriteBorder';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 const styles = {
   card: {
     maxWidth: 400,
   },
   media: {
-    height: 430,
+    height: 530,
     //paddingTop: '90%'//'56.25%', // 16:9
   },
 };
@@ -37,7 +37,7 @@ function GameCard(props) {
           </Typography>
           <CardActions>
             <IconButton onClick={() => props.makeFavorite(props.game)} size="small" color="secondary">
-              <Favorite_Border />
+              <FavoriteBorder />
             </IconButton>
             <IconButton onClick={() => props.delete(props.game)} size="small">
               <DeleteForever />
@@ -45,6 +45,9 @@ function GameCard(props) {
           </CardActions>
         </CardContent>
       </Card>
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
