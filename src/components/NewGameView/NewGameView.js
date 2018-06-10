@@ -15,16 +15,16 @@ import igdb from 'igdb-api-node';
 
 const mapStateToProps = state => ({
     user: state.user,
-    searchResults: state.searchResults,
+    searchResults: state.searchResults.searchResults,
 });
 
 // const mapReduxStateToProps = reduxState => ({
 //     reduxState,
 // });
-const client = igdb('72bb7ce60b4626f158199825d65f9ffc'),
-    log = response => {
-        console.log(response.url, JSON.stringify(response.body, null, 2));
-    };
+// const client = igdb('72bb7ce60b4626f158199825d65f9ffc'),
+//     log = response => {
+//         console.log(response.url, JSON.stringify(response.body, null, 2));
+//     };
 
 // const config = {
 //  'user-key': '72bb7ce60b4626f158199825d65f9ffc', 'accept': 'application/json' 
@@ -94,6 +94,7 @@ class NewGameView extends Component {
         event.preventDefault();
         const action = { type: 'API_SEARCH', payload: this.state.newGame.search }
         this.props.dispatch(action);
+        console.log(this.props.searchResults.searchResults);
 
     }
 
@@ -230,16 +231,16 @@ class NewGameView extends Component {
                 <div>
                     <h3>Results</h3>
                 </div>
-                {/* <ul>
-                    {this.props.searchResults.searchResults.map(result =>
-                        <ResultGame key={result.name} result={result} addNewGame={this.addNewGame} handleGenre={this.handleGenre} handleTitle={this.handleTitle} handleChange={this.handleChange} />)}
-                </ul> */}
+                <div>
+                    <ul>
+                        {this.props.searchResults.map(result =>
+                            <ResultGame key={result.id} result={result} />)}
+                    </ul>
+                </div>
             </div>
-            // </div>
         );
         return (
             <div>
-
                 {content}
             </div>
         );

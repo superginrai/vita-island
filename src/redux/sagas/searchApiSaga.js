@@ -12,10 +12,10 @@ import igdb from 'igdb-api-node';
 //         })
 //     } catch (error) { }
 // }
-const client = igdb('72bb7ce60b4626f158199825d65f9ffc');
-// log = response => {
-//     console.log(response.url, JSON.stringify(response.body, null, 2));
-// };
+const client = igdb('72bb7ce60b4626f158199825d65f9ffc'),
+log = response => {
+    console.log(response.url, JSON.stringify(response.body, null, 2));
+};
 
 function* searchApi(action) {
     try {
@@ -29,10 +29,10 @@ function* searchApi(action) {
                 // offset: 15, // Index offset for results
                 search: action.payload
             });
-        console.log(search);
+        console.log(search.body);
         yield dispatch({
             type: 'SEARCH_RESULTS',
-            payload: search.data.results,
+            payload: search.body,
         })
     } catch (error) { }
 }

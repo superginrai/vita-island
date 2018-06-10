@@ -14,14 +14,14 @@ class ResultGame extends Component {
         }
     }
 
-    handleInputChangeForTitle = propertyName => (event) => {
-        console.log(this.state.title)
-        this.setState({
-            [propertyName]: event.target.value,
-        });
-        console.log(event.target.value);
-        this.props.handleTitle(event.target.value);
-    }
+    // handleInputChangeForTitle = propertyName => (event) => {
+    //     console.log(this.state.title)
+    //     this.setState({
+    //         [propertyName]: event.target.value,
+    //     });
+    //     console.log(event.target.value);
+    //     this.props.handleTitle(event.target.value);
+    // }
 
     // componentDidMount() {
     //   this.handleInputChangeForTitle(this.props.result.name);
@@ -30,7 +30,7 @@ class ResultGame extends Component {
     render() {
         return (
             <div className="add-item-container">
-                <form onSubmit={() => this.props.addNewGame()}>
+                <li><form onSubmit={() => this.props.addNewGame()}>
                     {/* <div>
                         <Input
                             id="title"
@@ -45,30 +45,18 @@ class ResultGame extends Component {
                         <img src={this.props.result.image.icon_url} />
                     </div> */}
                     <div>
-                        <div>
-                            <GenreDropDown handleGenre={this.props.handleGenre} />
-                        </div>
-                        <div>
-                            <Select color="secondary"
-                                value={this.state.title}
-                                onChange={this.handleInputChangeForTitle('title')}
-                                inputProps={{
-                                    name: 'title',
-                                    id: 'title',
-                                }}
-                            >
-                                {/* <MenuItem value="">
-                            <em>Genre</em>
-                        </MenuItem> */}
-                                <MenuItem color="secondary" value={this.props.result.name}>{this.props.result.name}</MenuItem>
-                            </Select>
-                        </div>
+                       <h4> {this.props.result.name}</h4>
+                        {/* <img src={this.props.result.image.icon_url} /> */}
+
+
                         <Button variant="contained" size="large" color="primary" type="submit">
                             ADD TO YOUR COLLECTION
         </Button>
                     </div>
                 </form>
+                </li>
             </div>
+
         );
     }
 }
