@@ -10,6 +10,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import GenreDropDown from '../GenreDropDown/GenreDropDown';
 import Button from '@material-ui/core/Button';
+import ResultGame from '../ResultGame/ResultGame';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -102,22 +103,22 @@ class NewGameView extends Component {
     //         })
     // }
 
-    // addNewGame = event => {
-    //     console.log(this.state.newGame);
-    //     event.preventDefault();
-    //     axios.post('/api/game', this.state.newGame).then(response => {
-    //         console.log(response);
-    //     }).catch(error => {
-    //         console.log(error);
-    //     })
-    //     // clear fields after submission
-    //     this.setState({
-    //         newGame: {
-    //             title: '',
-    //             genre_id: '',
-    //         }
-    //     });
-    // }
+    addNewGame = gameFromApi => {
+        // console.log(event.target.value);
+        // event.preventDefault();
+        axios.post('/api/game', gameFromApi).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        })
+        // clear fields after submission
+        this.setState({
+            newGame: {
+                title: '',
+                genre_id: '',
+            }
+        });
+    }
 
 
     componentDidMount() {
@@ -139,7 +140,7 @@ class NewGameView extends Component {
                 <ButtonAppBar />
                 <br />
                 <br />
-                <div className="add-item-container">
+                {/* <div className="add-item-container">
                     <form onSubmit={this.addNewGame}>
                         <div>
                             <FormControl >
@@ -157,12 +158,12 @@ class NewGameView extends Component {
                                 <GenreDropDown handleGenre={this.handleGenre} />
                             </div>
                         </div>
-                        {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
+                        <input className="button" type="submit" value="DEPLOY IT" />
                         <Button variant="contained" size="large" color="primary" type="submit">
                             ADD TO YOUR COLLECTION
         </Button>
                     </form>
-                </div>
+                </div> */}
                 {/* <form onSubmit={this.getApi(this.state.search)}>
                     <FormControl >
                         <InputLabel htmlFor="apiSearch">
@@ -191,7 +192,7 @@ class NewGameView extends Component {
                 </div>
                 <ul>
                     {this.props.searchResults.searchResults.map(result =>
-                        <li>{result.name}</li>)}
+                        <ResultGame key={result.name} result={result} addNewGame={this.addNewGame} handleGenre={this.handleGenre} newGame={this.state.newGame}/>)}
                 </ul>
             </div>
         );

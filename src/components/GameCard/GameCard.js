@@ -28,7 +28,7 @@ function GameCard(props) {
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image="images/Banana.jpg"
+          image={props.image_url}
           title={props.complete}
         />
         <CardContent>
