@@ -11,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import GenreDropDown from '../GenreDropDown/GenreDropDown';
 import Button from '@material-ui/core/Button';
 import ResultGame from '../ResultGame/ResultGame';
+import igdb from 'igdb-api-node';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -20,10 +21,14 @@ const mapStateToProps = state => ({
 // const mapReduxStateToProps = reduxState => ({
 //     reduxState,
 // });
+const client = igdb('72bb7ce60b4626f158199825d65f9ffc'),
+    log = response => {
+        console.log(response.url, JSON.stringify(response.body, null, 2));
+    };
 
 // const config = {
-//     headers: { 'user-key': '72bb7ce60b4626f158199825d65f9ffc', 'accept': 'application/json' }
-//     //  headers: {'Access-Control-Allow-Origin': '*' } 
+//  'user-key': '72bb7ce60b4626f158199825d65f9ffc', 'accept': 'application/json' 
+
 // };
 
 class NewGameView extends Component {
@@ -34,9 +39,9 @@ class NewGameView extends Component {
             newGame: {
                 title: '',
                 genre_id: '',
+                image_url: '',
                 search: '',
             },
-            // search: '',
         }
     }
 
@@ -58,12 +63,21 @@ class NewGameView extends Component {
         })
     }
 
-    // handleSearch = event => {
-    //     this.setState({
-    //         ...this.state.search,
-    //         search: event.target.value,
-    //     });
-    // }
+    handleTitle = (newTitle) => {
+        this.setState({
+            newGame: {
+                ...this.state.newGame,
+                title: newTitle,
+            }
+        })
+    }
+
+    handleSearch = event => {
+        this.setState({
+            ...this.state.search,
+            search: event.target.value,
+        });
+    }
 
     // getApi = (search) => {
     //     // event.preventDefault();
@@ -81,32 +95,57 @@ class NewGameView extends Component {
         const action = { type: 'API_SEARCH', payload: this.state.newGame.search }
         this.props.dispatch(action);
 
-        // this.setState({
-        //   newItem: {
-        //     description: '',
-        //     image_url: '',
-        //   }
-        // });
     }
 
     // getApi = () => {
-    //     //  event.preventDefault();
-    //     axios({
-    //         method: 'GET',
-    //         url: 'https://api-2445582011268.apicast.io/games/13558?fields=*', config,
-    //         // params: config,
+    //     // client.games({
+    //     //     filters: {
+    //     //         'release_dates.date-gt': '2010-12-31',
+    //     //         'release_dates.date-lt': '2012-01-01'
+    //     //     },
+    //     //     limit: 5,
+    //     //     offset: 0,
+    //     //     search: 'trails of cold steel'
+    //     // }, [
+    //     //         'name',
+    //     //         'release_dates.date',
+    //     //         'rating',
+    //     //         'hypes',
+    //     //         'cover'
+    //     //     ]).then(log);
+
+    //     client.games({
+    //         filters: {
+    //             'platforms-eq': '46',
+    //         },
+    //         fields: '*', // Return all fields
+    //         limit: 5, // Limit to 5 results
+    //         // offset: 15, // Index offset for results
+    //         search: ''
+    //     }).then(response => {
+    //         // response.body contains the parsed JSON response to this query
+    //         console.log(response);
+    //     }).catch(error => {
+    //         throw error;
+    //     });
+
+    //  event.preventDefault();
+    // axios({
+    //     method: 'GET',
+    //     url: 'https://api-2445582011268.apicast.io/games/13558?fields=*',
+    //     params: config,
+    // })
+    //     .then(response => {
+    //         console.log(response);
+    //     }).catch(error => {
+    //         console.log(error);
     //     })
-    //         .then(response => {
-    //             console.log(response);
-    //         }).catch(error => {
-    //             console.log(error);
-    //         })
     // }
 
-    addNewGame = gameFromApi => {
+    addNewGame = () => {
         // console.log(event.target.value);
         // event.preventDefault();
-        axios.post('/api/game', gameFromApi).then(response => {
+        axios.post('/api/game', this.state.newGame).then(response => {
             console.log(response);
         }).catch(error => {
             console.log(error);
@@ -116,6 +155,7 @@ class NewGameView extends Component {
             newGame: {
                 title: '',
                 genre_id: '',
+                image_url: '',
             }
         });
     }
@@ -164,7 +204,7 @@ class NewGameView extends Component {
         </Button>
                     </form>
                 </div> */}
-                {/* <form onSubmit={this.getApi(this.state.search)}>
+                {/* <form onSubmit={this.getApi}>
                     <FormControl >
                         <InputLabel htmlFor="apiSearch">
                             Search:</InputLabel>
@@ -174,8 +214,8 @@ class NewGameView extends Component {
                             onChange={this.handleSearch}
                         />
                     </FormControl>
-                    <Button variant="contained" size="large" color="primary" type="submit">
-                        API REQUEST YO
+                <Button variant="contained" size="large" color="primary" type="submit">
+                    API REQUEST YO
         </Button>
                 </form> */}
 
@@ -190,11 +230,12 @@ class NewGameView extends Component {
                 <div>
                     <h3>Results</h3>
                 </div>
-                <ul>
+                {/* <ul>
                     {this.props.searchResults.searchResults.map(result =>
-                        <ResultGame key={result.name} result={result} addNewGame={this.addNewGame} handleGenre={this.handleGenre} newGame={this.state.newGame}/>)}
-                </ul>
+                        <ResultGame key={result.name} result={result} addNewGame={this.addNewGame} handleGenre={this.handleGenre} handleTitle={this.handleTitle} handleChange={this.handleChange} />)}
+                </ul> */}
             </div>
+            // </div>
         );
         return (
             <div>
