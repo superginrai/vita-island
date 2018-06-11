@@ -1,64 +1,78 @@
 import React, { Component } from 'react';
-import GenreDropDown from '../GenreDropDown/GenreDropDown';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+import DeleteForever from '@material-ui/icons/DeleteForever';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import AddCircle from '@material-ui/icons/AddCircle';
+import igdb from 'igdb-api-node';
 
-class ResultGame extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: '',
-            image_url: '',
-        }
+const styles = {
+    card: {
+        maxWidth: 400,
+    },
+    media: {
+        height: 530,
+        //paddingTop: '90%'//'56.25%', // 16:9
+    },
+};
+
+const client = igdb('72bb7ce60b4626f158199825d65f9ffc');
+// log = response => {
+//     console.log(response.url, JSON.stringify(response.body, null, 2));
+// };
+
+
+function GameCard(props) {
+    const { classes } = props;
+    
+    const cover = client.image({
+        cloudinary_id: props.result.cover.cloudinary_id,
+    }, 'cover_big', 'jpg');
+
+    const game = {
+        title: props.result.name,
+        image_url: cover,
+        genre_id: 4
     }
 
-    // handleInputChangeForTitle = propertyName => (event) => {
-    //     console.log(this.state.title)
-    //     this.setState({
-    //         [propertyName]: event.target.value,
-    //     });
-    //     console.log(event.target.value);
-    //     this.props.handleTitle(event.target.value);
-    // }
-
-    // componentDidMount() {
-    //   this.handleInputChangeForTitle(this.props.result.name);
-    // }
-
-    render() {
-        return (
-            <div className="add-item-container">
-                <li><form onSubmit={() => this.props.addNewGame()}>
-                    {/* <div>
-                        <Input
-                            id="title"
-                            value={this.props.result.name}
-                            onSubmit={this.handleInputChangeForTitle('title')}
-                        />
-                        <Input
-                            id="image"
-                            value={this.props.result.image.medium_url}
-                            onChange={this.handleInputChangeFor('image_url')}
-                        />
-                        <img src={this.props.result.image.icon_url} />
-                    </div> */}
-                    <div>
-                       <h4> {this.props.result.name}</h4>
-                        {/* <img src={this.props.result.image.icon_url} /> */}
-
-
-                        <Button variant="contained" size="large" color="primary" type="submit">
-                            ADD TO YOUR COLLECTION
-        </Button>
-                    </div>
-                </form>
-                </li>
-            </div>
-
-        );
-    }
+    return (
+        <div>
+            <Card className={classes.card}>
+                <CardMedia
+                    className={classes.media}
+                    image={cover}
+                    title={props.result.summary}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="headline" component="h2">
+                        {props.result.name}
+                    </Typography>
+                    <CardActions>
+                        <IconButton onClick={props.addNewGame(game)} size="small" color="secondary">
+                            <AddCircle color="primary" />
+                        </IconButton>
+                        <IconButton size="large">
+                            <DeleteForever />
+                        </IconButton>
+                    </CardActions>
+                </CardContent>
+            </Card>
+            <br />
+            <br />
+            <br />
+        </div>
+    );
 }
 
-export default ResultGame;
+GameCard.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(GameCard);

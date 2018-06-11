@@ -37,8 +37,19 @@ function* searchApi(action) {
     } catch (error) { }
 }
 
+function* addGame(action) {
+    try {
+        const gamePost = yield call(axios.post, '/api/game', action.payload);
+        console.log(gamePost);
+        // yield dispatch ({
+        //     type: 'GET_ITEMS',
+        // })
+    } catch  (error) {}
+}
+
 function* searchApiSaga() {
     yield takeEvery('API_SEARCH', searchApi);
+    yield takeEvery('ADD_GAME', addGame);
 }
 
 export default searchApiSaga;

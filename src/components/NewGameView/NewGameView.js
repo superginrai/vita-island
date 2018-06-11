@@ -18,13 +18,15 @@ const mapStateToProps = state => ({
     searchResults: state.searchResults.searchResults,
 });
 
-// const mapReduxStateToProps = reduxState => ({
-//     reduxState,
-// });
+
 // const client = igdb('72bb7ce60b4626f158199825d65f9ffc'),
 //     log = response => {
 //         console.log(response.url, JSON.stringify(response.body, null, 2));
 //     };
+
+// client.image({
+//     cloudinary_id: result.cover.cloudinary_id,
+// }, 'cover_big', 'jpg');
 
 // const config = {
 //  'user-key': '72bb7ce60b4626f158199825d65f9ffc', 'accept': 'application/json' 
@@ -98,6 +100,12 @@ class NewGameView extends Component {
 
     }
 
+    addNewGame = game => event => {
+        console.log('game:', game);
+        event.preventDefault();
+        const action = { type: 'ADD_GAME', payload: game }
+        this.props.dispatch(action);
+    }
     // getApi = () => {
     //     // client.games({
     //     //     filters: {
@@ -143,24 +151,23 @@ class NewGameView extends Component {
     //     })
     // }
 
-    addNewGame = () => {
-        // console.log(event.target.value);
-        // event.preventDefault();
-        axios.post('/api/game', this.state.newGame).then(response => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error);
-        })
-        // clear fields after submission
-        this.setState({
-            newGame: {
-                title: '',
-                genre_id: '',
-                image_url: '',
-            }
-        });
-    }
-
+    // addNewGame = (game) = event => {
+    //     // console.log(event.target.value);
+    //     event.preventDefault();
+    //     axios.post('/api/game', game).then(response => {
+    //         console.log(response);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    //     // clear fields after submission
+    //     this.setState({
+    //         newGame: {
+    //             title: '',
+    //             genre_id: '',
+    //             image_url: '',
+    //         }
+    //     });
+    // }
 
     componentDidMount() {
         this.props.dispatch(fetchUser());
@@ -234,7 +241,7 @@ class NewGameView extends Component {
                 <div>
                     <ul>
                         {this.props.searchResults.map(result =>
-                            <ResultGame key={result.id} result={result} />)}
+                            <ResultGame key={result.id} result={result} addNewGame={this.addNewGame}/>)}
                     </ul>
                 </div>
             </div>
