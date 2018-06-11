@@ -44,6 +44,7 @@ function GameCard(props) {
         title: props.result.name,
         image_url: cover,
         genre_id: props.result.genres[0],
+        description: props.result.summary,
         complete: false,
         sealed: false,
     }

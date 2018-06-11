@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Checkboxes from '../Checkboxes/Checkboxes';
+import InfoExpansionPanel from '../InfoExpansionPanel/InfoExpansionPanel.js';
 
 const styles = {
   card: {
@@ -46,6 +47,7 @@ function GameCard(props) {
             <Checkboxes />
           </CardActions>
         </CardContent>
+        <InfoExpansionPanel game={props.game}/>
       </Card>
       <br />
       <br />
