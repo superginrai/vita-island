@@ -86,12 +86,15 @@ class GenreDropDown extends React.Component {
                         {/* <MenuItem value="">
                             <em>Genre</em>
                         </MenuItem> */}
-                        <MenuItem color="secondary" value={1}>Action</MenuItem>
-                        <MenuItem value={2}>Adventure</MenuItem>
-                        <MenuItem value={3}>Fighting</MenuItem>
-                        <MenuItem value={4}>Otome</MenuItem>
-                        <MenuItem value={5}>Music</MenuItem>
-                        <MenuItem value={6}>Racing</MenuItem>
+                        <MenuItem color="secondary" value={31}>Adventure</MenuItem>
+                        <MenuItem value={33}>Arcade</MenuItem>
+                        <MenuItem value={4}>Fighting</MenuItem>
+                        <MenuItem value={25}>Hack 'n' Slash</MenuItem>
+                        <MenuItem value={10}>Racing</MenuItem>
+                        <MenuItem value={12}>RPG</MenuItem>
+                        <MenuItem value={5}>Shooter</MenuItem>
+                        <MenuItem value={13}>Simulator</MenuItem>
+                        <MenuItem value={15}>Strategy</MenuItem>
                     </Select>
                 </FormControl>
             </div>

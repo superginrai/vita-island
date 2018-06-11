@@ -20,11 +20,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log('POST route');
+    console.log('POST route:', req.body);
     if (req.isAuthenticated()) {
-        let queryText = `INSERT INTO game (title, favorite, genre_id, person_id)
-                VALUES ($1, $2, $3, $4)`;
-        pool.query(queryText, [req.body.title, false, req.body.genre_id, req.user.id])
+        let queryText = `INSERT INTO game (title, favorite, genre_id, image_url, person_id)
+                VALUES ($1, $2, $3, $4, $5)`;
+        pool.query(queryText, [req.body.title, false, req.body.genre_id, req.body.image_url, req.user.id])
             .then((result) => {
                 res.sendStatus(201);
             })
