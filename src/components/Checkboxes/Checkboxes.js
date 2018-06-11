@@ -47,7 +47,7 @@ class CheckboxLabels extends React.Component {
             <Checkbox
               checked={this.state.checkedA}
               onChange={this.handleChange('checkedA')}
-              value={this.props.isComplete}
+              value='taco'
             />
           }
           label="Complete"
@@ -57,7 +57,7 @@ class CheckboxLabels extends React.Component {
             <Checkbox
               checked={this.state.checkedB}
               onChange={this.handleChange('checkedB')}
-              value={this.props.isSealed}
+              value='taco'
               color="primary"
             />
           }
