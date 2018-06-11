@@ -12,8 +12,9 @@ import DeleteForever from '@material-ui/icons/DeleteForever';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import AddCircle from '@material-ui/icons/AddCircle';
 import igdb from 'igdb-api-node';
+import Checkboxes from '../Checkboxes/Checkboxes';
 
-const styles = {
+const styles = theme =>({
     card: {
         maxWidth: 400,
     },
@@ -21,7 +22,10 @@ const styles = {
         height: 530,
         //paddingTop: '90%'//'56.25%', // 16:9
     },
-};
+    button: {
+        margin: theme.spacing.unit,
+    },
+});
 
 const client = igdb('72bb7ce60b4626f158199825d65f9ffc');
 // log = response => {
@@ -31,7 +35,7 @@ const client = igdb('72bb7ce60b4626f158199825d65f9ffc');
 
 function GameCard(props) {
     const { classes } = props;
-    
+
     const cover = client.image({
         cloudinary_id: props.result.cover.cloudinary_id,
     }, 'cover_big', 'jpg');
@@ -39,7 +43,9 @@ function GameCard(props) {
     const game = {
         title: props.result.name,
         image_url: cover,
-        genre_id: 4
+        genre_id: props.result.genres[0],
+        complete: false,
+        sealed: false,
     }
 
     return (
@@ -55,12 +61,10 @@ function GameCard(props) {
                         {props.result.name}
                     </Typography>
                     <CardActions>
-                        <IconButton onClick={props.addNewGame(game)} size="small" color="secondary">
+                        <IconButton onClick={props.addNewGame(game)} variant="fab" color="secondary" className={classes.button}>
                             <AddCircle color="primary" />
                         </IconButton>
-                        <IconButton size="large">
-                            <DeleteForever />
-                        </IconButton>
+                            <Checkboxes isSealed={game.sealed} isComplete={game.complete}/>
                     </CardActions>
                 </CardContent>
             </Card>

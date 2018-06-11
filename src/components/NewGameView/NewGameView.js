@@ -185,7 +185,7 @@ class NewGameView extends Component {
         // if (this.props.user.username) {
         content = (
             <div>
-                <ButtonAppBar />
+                <ButtonAppBar currentView="Add a Game:"/>
                 <br />
                 <br />
                 {/* <div className="add-item-container">
@@ -228,20 +228,24 @@ class NewGameView extends Component {
                 </form> */}
 
                 <div className="search api">
-
+                    <br />
                     <form onSubmit={this.getApi}>
-                        search: <input className="input" onChange={this.handleChange('search')} value={this.state.search} placeholder='searchy search' />
+                        <FormControl>
+                            <InputLabel htmlFor="apiSearch">
+                                Search:</InputLabel>
+                            <Input className="input" onChange={this.handleChange('search')} value={this.state.search} placeholder='game title' />
+                        </FormControl>
                         <br />
-                        <input className="button" type="submit" value="DEPLOY IT" />
+                        {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
+                        <Button variant="contained" size="large" color="primary" type="submit">
+                            FIND GAMES
+        </Button>
                     </form>
-                </div>
-                <div>
-                    <h3>Results</h3>
                 </div>
                 <div>
                     <ul>
                         {this.props.searchResults.map(result =>
-                            <ResultGame key={result.id} result={result} addNewGame={this.addNewGame}/>)}
+                            <ResultGame key={result.id} result={result} addNewGame={this.addNewGame} />)}
                     </ul>
                 </div>
             </div>
