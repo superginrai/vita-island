@@ -11,10 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import AddCircle from '@material-ui/icons/AddCircle';
+import AddIcon from '@material-ui/icons/Add';
 import igdb from 'igdb-api-node';
 import Checkboxes from '../Checkboxes/Checkboxes';
 
-const styles = theme =>({
+const styles = theme => ({
     card: {
         maxWidth: 400,
     },
@@ -62,10 +63,11 @@ function GameCard(props) {
                         {props.result.name}
                     </Typography>
                     <CardActions>
-                        <IconButton onClick={props.addNewGame(game)} variant="fab" color="secondary" className={classes.button}>
-                            <AddCircle color="primary" />
-                        </IconButton>
-                            <Checkboxes game={props.result}/>
+                        <Button onClick={props.addNewGame(game)} variant="fab" color="primary" className={classes.button}>
+                            <AddIcon />
+                        </Button>
+                        Add this game to your collection
+                        {/* <Checkboxes game={props.result}/> */}
                     </CardActions>
                 </CardContent>
             </Card>

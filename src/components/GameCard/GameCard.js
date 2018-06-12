@@ -38,13 +38,13 @@ function GameCard(props) {
             {props.title}
           </Typography>
           <CardActions>
-            <IconButton onClick={() => props.makeFavorite(props.game)} size="small" color="secondary">
+            {/* <IconButton onClick={() => props.makeFavorite(props.game)} size="small" color="secondary">
               <FavoriteBorder />
             </IconButton>
             <IconButton onClick={() => props.delete(props.game)}>
               <DeleteForever />
-            </IconButton>
-            <Checkboxes game={props.game}/>
+            </IconButton> */}
+            <Checkboxes game={props.game} delete={props.delete} makeFavorite={props.makeFavorite} />
           </CardActions>
         </CardContent>
         <InfoExpansionPanel game={props.game}/>

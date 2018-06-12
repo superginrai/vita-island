@@ -5,17 +5,21 @@ import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import DeleteForever from '@material-ui/icons/DeleteForever';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { connect } from 'react-redux';
+import { grey100 } from 'material-ui/styles/colors';
+
 
 const styles = {
   root: {
-    color: green[600],
+    color: grey100,
     '&$checked': {
-      color: green[500],
+      color: grey100,
     },
   },
   checked: {},
@@ -36,6 +40,7 @@ class CheckboxLabels extends React.Component {
   state = {
     checkedComplete: this.props.game.complete,
     checkedSealed: this.props.game.sealed,
+    checkedFavorite: this.props.game.favorite,
   };
 
   handleChange = name => event => {
@@ -67,13 +72,27 @@ class CheckboxLabels extends React.Component {
   componentDidUpdate() {
     this.completeGame();
     this.sealedGame();
-}
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={this.state.checkedFavorite} onChange={this.handleChange('checkedFavorite')} onClick={() => this.props.makeFavorite(this.props.game)}/>
+          }
+
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              icon={<DeleteForever />} checkedIcon={<DeleteForever />} onClick={() => this.props.delete(this.props.game)}
+            />
+          }
+
+        />
         <FormControlLabel
           control={
             <Checkbox
