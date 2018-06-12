@@ -44,7 +44,7 @@ function GameCard(props) {
             <IconButton onClick={() => props.delete(props.game)}>
               <DeleteForever />
             </IconButton>
-            <Checkboxes />
+            <Checkboxes game={props.game}/>
           </CardActions>
         </CardContent>
         <InfoExpansionPanel game={props.game}/>

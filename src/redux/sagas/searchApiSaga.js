@@ -13,9 +13,9 @@ import igdb from 'igdb-api-node';
 //     } catch (error) { }
 // }
 const client = igdb('72bb7ce60b4626f158199825d65f9ffc'),
-log = response => {
-    console.log(response.url, JSON.stringify(response.body, null, 2));
-};
+    log = response => {
+        console.log(response.url, JSON.stringify(response.body, null, 2));
+    };
 
 function* searchApi(action) {
     try {
@@ -41,15 +41,21 @@ function* addGame(action) {
     try {
         const gamePost = yield call(axios.post, '/api/game', action.payload);
         console.log(gamePost);
-        // yield dispatch ({
-        //     type: 'GET_ITEMS',
-        // })
-    } catch  (error) {}
+        
+    } catch (error) { }
+}
+
+function* makeComplete(action) {
+    try {
+        const gameComplete = yield call(axios.put, '/api/game/complete', action.payload);
+        console.log(gameComplete);
+    } catch (error) { }
 }
 
 function* searchApiSaga() {
     yield takeEvery('API_SEARCH', searchApi);
     yield takeEvery('ADD_GAME', addGame);
+    yield takeEvery('MAKE_COMPLETE', makeComplete);
 }
 
 export default searchApiSaga;

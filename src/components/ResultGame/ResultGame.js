@@ -65,7 +65,7 @@ function GameCard(props) {
                         <IconButton onClick={props.addNewGame(game)} variant="fab" color="secondary" className={classes.button}>
                             <AddCircle color="primary" />
                         </IconButton>
-                            <Checkboxes />
+                            <Checkboxes game={props.result}/>
                     </CardActions>
                 </CardContent>
             </Card>

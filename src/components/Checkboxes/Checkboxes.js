@@ -9,6 +9,7 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import { connect } from 'react-redux';
 
 const styles = {
   root: {
@@ -26,16 +27,37 @@ const styles = {
     fontSize: 20,
   },
 };
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 
 class CheckboxLabels extends React.Component {
   state = {
-    checkedA: false,
+    checkedComplete: false,
     checkedB: false,
   };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
+    // this.completeGame();
   };
+
+  completeGame = event => {
+    // event.preventDefault();
+    // console.log('game:', game);
+    const body = {
+      person_id: this.props.game.person_id,
+      id: this.props.game.id,
+      complete: this.state.checkedComplete,
+    }
+    const action = { type: 'MAKE_COMPLETE', payload: body, }
+    this.props.dispatch(action);
+  }
+
+  componentDidUpdate() {
+    this.completeGame();
+}
 
   render() {
     const { classes } = this.props;
@@ -45,9 +67,10 @@ class CheckboxLabels extends React.Component {
         <FormControlLabel
           control={
             <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value='taco'
+              checked={this.state.checkedComplete}
+              onChange={this.handleChange('checkedComplete')}
+              value={this.props.game.complete}
+              // onClick={this.completeGame}
             />
           }
           label="Complete"
@@ -57,7 +80,7 @@ class CheckboxLabels extends React.Component {
             <Checkbox
               checked={this.state.checkedB}
               onChange={this.handleChange('checkedB')}
-              value='taco'
+              value={this.props.game.sealed}
               color="primary"
             />
           }
@@ -72,4 +95,4 @@ CheckboxLabels.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CheckboxLabels);
+export default connect(mapStateToProps)(CheckboxLabels);
