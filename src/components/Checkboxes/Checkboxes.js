@@ -34,18 +34,16 @@ const mapStateToProps = state => ({
 
 class CheckboxLabels extends React.Component {
   state = {
-    checkedComplete: false,
-    checkedB: false,
+    checkedComplete: this.props.game.complete,
+    checkedSealed: this.props.game.sealed,
   };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
-    // this.completeGame();
   };
 
   completeGame = event => {
     // event.preventDefault();
-    // console.log('game:', game);
     const body = {
       person_id: this.props.game.person_id,
       id: this.props.game.id,
@@ -55,8 +53,20 @@ class CheckboxLabels extends React.Component {
     this.props.dispatch(action);
   }
 
+  sealedGame = event => {
+    // event.preventDefault();
+    const body = {
+      person_id: this.props.game.person_id,
+      id: this.props.game.id,
+      sealed: this.state.checkedSealed,
+    }
+    const action = { type: 'MAKE_SEALED', payload: body, }
+    this.props.dispatch(action);
+  }
+
   componentDidUpdate() {
     this.completeGame();
+    this.sealedGame();
 }
 
   render() {
@@ -70,7 +80,6 @@ class CheckboxLabels extends React.Component {
               checked={this.state.checkedComplete}
               onChange={this.handleChange('checkedComplete')}
               value={this.props.game.complete}
-              // onClick={this.completeGame}
             />
           }
           label="Complete"
@@ -78,8 +87,8 @@ class CheckboxLabels extends React.Component {
         <FormControlLabel
           control={
             <Checkbox
-              checked={this.state.checkedB}
-              onChange={this.handleChange('checkedB')}
+              checked={this.state.checkedSealed}
+              onChange={this.handleChange('checkedSealed')}
               value={this.props.game.sealed}
               color="primary"
             />

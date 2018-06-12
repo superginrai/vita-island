@@ -41,7 +41,7 @@ function* addGame(action) {
     try {
         const gamePost = yield call(axios.post, '/api/game', action.payload);
         console.log(gamePost);
-        
+
     } catch (error) { }
 }
 
@@ -52,10 +52,18 @@ function* makeComplete(action) {
     } catch (error) { }
 }
 
+function* makeSealed(action) {
+    try {
+        const gameSealed = yield call(axios.put, '/api/game/sealed', action.payload);
+        console.log(gameSealed);
+    } catch (error) { }
+}
+
 function* searchApiSaga() {
     yield takeEvery('API_SEARCH', searchApi);
     yield takeEvery('ADD_GAME', addGame);
     yield takeEvery('MAKE_COMPLETE', makeComplete);
+    yield takeEvery('MAKE_SEALED', makeSealed);
 }
 
 export default searchApiSaga;

@@ -91,6 +91,23 @@ router.put('/complete', (req, res) => {
     }
 })
 
+router.put('/sealed', (req, res) => {
+    console.log('PUT sealed route');
+    if (req.isAuthenticated() && req.body.person_id == req.user.id) {
+        let queryText = `UPDATE game SET sealed=$1 WHERE id=$2`;
+        console.log(req.body);
+        pool.query(queryText, [req.body.sealed, req.body.id])
+            .then(() => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on put: ', error)
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+})
 
 router.get('/genre/:id', (req, res) => {
     console.log('GET genre route', req.user.id, req.params.id);
