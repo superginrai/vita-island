@@ -12,6 +12,7 @@ import igdb from 'igdb-api-node';
 //         })
 //     } catch (error) { }
 // }
+
 const client = igdb('72bb7ce60b4626f158199825d65f9ffc'),
     log = response => {
         console.log(response.url, JSON.stringify(response.body, null, 2));

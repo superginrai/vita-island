@@ -12,6 +12,9 @@ import GenreDropDown from '../GenreDropDown/GenreDropDown';
 import Button from '@material-ui/core/Button';
 import ResultGame from '../ResultGame/ResultGame';
 import igdb from 'igdb-api-node';
+import GameAddedSnackBar, { openSnackbar } from '../GameAddedSnackBar/GameAddedSnackBar';
+
+
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -105,7 +108,14 @@ class NewGameView extends Component {
         event.preventDefault();
         const action = { type: 'ADD_GAME', payload: game }
         this.props.dispatch(action);
+        this.showNotifier();
     }
+
+    showNotifier = (event) => {
+        // event.preventDefault();
+        console.log('snackssss');
+        openSnackbar();
+      }
     // getApi = () => {
     //     // client.games({
     //     //     filters: {
@@ -184,8 +194,10 @@ class NewGameView extends Component {
         // const { classes } = props;
         // if (this.props.user.username) {
         content = (
+
             <div>
-                <ButtonAppBar currentView="Add a Game:"/>
+                <GameAddedSnackBar />
+                <ButtonAppBar currentView="Add a Game:" />
                 <br />
                 <br />
                 {/* <div className="add-item-container">
@@ -251,6 +263,7 @@ class NewGameView extends Component {
             </div>
         );
         return (
+            
             <div>
                 {content}
             </div>
