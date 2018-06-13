@@ -13,7 +13,8 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { connect } from 'react-redux';
 import { grey100 } from 'material-ui/styles/colors';
-
+import DeleteAlert, { handleOpen }from '../DeleteAlert/DeleteAlert';
+import Modal from '@material-ui/core/Modal';
 
 const styles = {
   root: {
@@ -41,6 +42,7 @@ class CheckboxLabels extends React.Component {
     checkedComplete: this.props.game.complete,
     checkedSealed: this.props.game.sealed,
     checkedFavorite: this.props.game.favorite,
+    open: false,
   };
 
   handleChange = name => event => {
@@ -69,6 +71,12 @@ class CheckboxLabels extends React.Component {
     this.props.dispatch(action);
   }
 
+//   showNotifier = (event) => {
+//     // event.preventDefault();
+//     console.log('snackssss');
+//     handleOpen();
+// }
+
   componentDidUpdate() {
     this.completeGame();
     this.sealedGame();
@@ -78,6 +86,7 @@ class CheckboxLabels extends React.Component {
     const { classes } = this.props;
 
     return (
+      <div>
       <FormGroup row>
         <FormControlLabel
           control={
@@ -90,8 +99,8 @@ class CheckboxLabels extends React.Component {
             <Checkbox
               icon={<DeleteForever />} checkedIcon={<DeleteForever />} onClick={() => this.props.delete(this.props.game)}
             />
+            
           }
-
         />
         <FormControlLabel
           control={
@@ -115,6 +124,7 @@ class CheckboxLabels extends React.Component {
           label="Sealed"
         />
       </FormGroup>
+      </div>
     );
   }
 }

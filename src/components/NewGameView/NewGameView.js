@@ -100,7 +100,11 @@ class NewGameView extends Component {
         const action = { type: 'API_SEARCH', payload: this.state.newGame.search }
         this.props.dispatch(action);
         console.log(this.props.searchResults.searchResults);
-
+        this.setState({
+            newGame: {
+                search: '',
+            }
+        });
     }
 
     addNewGame = game => event => {
@@ -115,7 +119,7 @@ class NewGameView extends Component {
         // event.preventDefault();
         console.log('snackssss');
         openSnackbar();
-      }
+    }
     // getApi = () => {
     //     // client.games({
     //     //     filters: {
@@ -245,7 +249,7 @@ class NewGameView extends Component {
                         <FormControl>
                             <InputLabel htmlFor="apiSearch">
                                 Search:</InputLabel>
-                            <Input className="input" onChange={this.handleChange('search')} value={this.state.search} placeholder='game title' />
+                            <Input className="input" onChange={this.handleChange('search')} value={this.state.newGame.search} placeholder='game title' />
                         </FormControl>
                         <br />
                         {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
@@ -263,7 +267,7 @@ class NewGameView extends Component {
             </div>
         );
         return (
-            
+
             <div>
                 {content}
             </div>

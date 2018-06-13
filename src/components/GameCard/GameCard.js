@@ -13,6 +13,8 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Checkboxes from '../Checkboxes/Checkboxes';
 import InfoExpansionPanel from '../InfoExpansionPanel/InfoExpansionPanel.js';
 
+
+
 const styles = {
   card: {
     maxWidth: 400,

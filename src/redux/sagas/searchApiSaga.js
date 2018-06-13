@@ -31,6 +31,7 @@ function* searchApi(action) {
                 search: action.payload
             });
         console.log(search.body);
+        
         yield dispatch({
             type: 'SEARCH_RESULTS',
             payload: search.body,
