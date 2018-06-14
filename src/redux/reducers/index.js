@@ -9,6 +9,7 @@ const store = combineReducers({
   user,
   login,
   searchResults,
+  // storeThumbnails,
 });
 
 export default store;

@@ -24,9 +24,12 @@ function* searchApi(action) {
             client.games, {
                 filters: {
                     'platforms-eq': '46',
+                    'genres-exists': '1',
+                    'name-exists': '1',
+                    'summary-exists':'1',
                 },
                 fields: '*', // Return all fields
-                limit: 5, // Limit to 5 results
+                limit: 10, // Limit to 5 results
                 // offset: 15, // Index offset for results
                 search: action.payload
             });
@@ -36,10 +39,9 @@ function* searchApi(action) {
             type: 'SEARCH_RESULTS',
             payload: search.body,
         })
-        yield dispatch({
-            type: 'COVER_STATE',
-            payload: search.body,
-        })
+        // yield search.body.object.game.map({
+
+        // })
     } catch (error) { }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -28,62 +29,118 @@ const styles = theme => ({
     },
 });
 
+const mapStateToProps = state => ({
+
+});
+
 const client = igdb('72bb7ce60b4626f158199825d65f9ffc');
 // log = response => {
 //     console.log(response.url, JSON.stringify(response.body, null, 2));
 // };
 
 
-function GameCard(props) {
-    const { classes } = props;
-
-    const cover = client.image(
-        {
-            cloudinary_id: props.result.cover.cloudinary_id,
-        }, 
-    'cover_big', 'jpg');
-    
-    // || null;
-
-    const game = {
-        title: props.result.name,
-        image_url: cover,
-        genre_id: props.result.genres[0],
-        description: props.result.summary,
-        complete: false,
-        sealed: false,
+class GameCard extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            game: {
+                title: this.props.result.name,
+                image_url: 'images/vitaLove.jpg',
+                genre_id: this.props.result.genres[0],
+                description: this.props.result.summary,
+                complete: false,
+                sealed: false,
+            }
+        }
     }
 
-    return (
-        <div>
-            <Card className={classes.card}>
-                <CardMedia
-                    className={classes.media}
-                    image={cover}
-                    title={props.result.summary}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
-                        {props.result.name}
-                    </Typography>
-                    <CardActions>
-                        <Button onClick={props.addNewGame(game)} variant="fab" color="primary" className={classes.button}>
-                            <AddIcon />
-                        </Button>
-                        Add this game to your collection
+    componentDidMount() {
+        this.getCovers(this.props.result.cover);
+        // this.checkGenre(this.props.result.genres);
+    }
+
+    getCovers = (thumbnail) => {
+        if (thumbnail === undefined) {
+            console.log('cover art is default');
+        } else {
+            const cover = client.image(
+                {
+                    cloudinary_id: thumbnail.cloudinary_id,
+                },
+                'cover_big', 'jpg');
+            console.log('ssoooo close', cover)
+            this.setState({
+                game: {
+                    ...this.state.game,
+                    image_url: cover,
+                }
+            })
+        }
+    }
+
+    // checkGenre = (genre) => {
+    //     if (genre === undefined) {
+    //         console.log('genre is default');
+    //     } else {
+    //         this.setState({
+    //             game: {
+    //                 ...this.state.game,
+    //                 genre_id: genre[0],
+    //             }
+    //         })
+    //     }
+    // }
+
+    // const cover = client.image(
+    //     {
+    //         cloudinary_id: props.result.cover.cloudinary_id,
+    //     }, 
+    // 'cover_big', 'jpg');
+
+    // || null;
+
+    // const game = {
+    //     title: props.result.name,
+    //     image_url: cover,
+    //     genre_id: props.result.genres[0],
+    //     description: props.result.summary,
+    //     complete: false,
+    //     sealed: false,
+    // }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <div>
+                <Card className={classes.card}>
+                    <CardMedia
+                        className={classes.media}
+                        image={this.state.game.image_url}
+                        title={this.state.game.summary}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="headline" component="h2">
+                            {this.state.game.title}
+                        </Typography>
+                        <CardActions>
+                            <Button onClick={this.props.addNewGame(this.state.game)} variant="fab" color="primary" className={classes.button}>
+                                <AddIcon />
+                            </Button>
+                            Add this game to your collection
                         {/* <Checkboxes game={props.result}/> */}
-                    </CardActions>
-                </CardContent>
-            </Card>
-            <br />
-            <br />
-            <br />
-        </div>
-    );
+                        </CardActions>
+                    </CardContent>
+                </Card>
+                <br />
+                <br />
+                <br />
+            </div>
+        );
+    }
 }
 
 GameCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(GameCard);
+export default connect(mapStateToProps)(withStyles(styles)(GameCard));
