@@ -6,6 +6,16 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import './GenreDropDown.css';
+import { withStyles } from '@material-ui/core/styles';
+import { lightBlue100 } from 'material-ui/styles/colors';
+
+
+const styles = {
+  MenuItem: {
+     color: lightBlue100,
+     text: lightBlue100,
+  }
+  };
 
 class GenreDropDown extends React.Component {
     constructor(props) {
@@ -102,4 +112,4 @@ class GenreDropDown extends React.Component {
     }
 }
 
-export default GenreDropDown;
+export default withStyles(styles)(GenreDropDown);

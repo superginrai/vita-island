@@ -32,6 +32,7 @@ class GenreView extends Component {
     //         payload: genre,
     //     })
     // }
+
     handleGenre = (genre_id) => {
         // event.preventDefault();
         // const id = this.state.genre

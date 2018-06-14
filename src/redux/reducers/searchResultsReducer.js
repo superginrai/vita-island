@@ -11,4 +11,5 @@ const searchResults = (state = [], action) => {
 
 export default combineReducers({
     searchResults,
+    
   });

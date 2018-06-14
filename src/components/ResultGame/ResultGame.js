@@ -37,23 +37,18 @@ const client = igdb('72bb7ce60b4626f158199825d65f9ffc');
 function GameCard(props) {
     const { classes } = props;
 
-    let cover;
-
-    if (props.result.cover == undefined) {
-        let cover = 'images/vitaLove.jpg';
-    } else {
-        let cover = client.image(
-            {
-                cloudinary_id: props.result.cover.cloudinary_id,
-            },
-            'cover_big', 'jpg');
-    }
-
+    const cover = client.image(
+        {
+            cloudinary_id: props.result.cover.cloudinary_id,
+        }, 
+    'cover_big', 'jpg');
+    
+    // || null;
 
     const game = {
         title: props.result.name,
-        image_url: cover || '',
-        genre_id: props.result.genres[0] || null,
+        image_url: cover,
+        genre_id: props.result.genres[0],
         description: props.result.summary,
         complete: false,
         sealed: false,
