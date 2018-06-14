@@ -261,7 +261,7 @@ class NewGameView extends Component {
                 <div>
                     <ul>
                         {this.props.searchResults.map(result =>
-                            <ResultGame key={result.id} result={result} addNewGame={this.addNewGame} />)}
+                            <ResultGame key={result.id} result={result} addNewGame={this.addNewGame} /> )}
                     </ul>
                 </div>
             </div>

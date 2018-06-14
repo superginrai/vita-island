@@ -14,6 +14,7 @@ const styles = {
   MenuItem: {
      color: lightBlue100,
      text: lightBlue100,
+     
   }
   };
 

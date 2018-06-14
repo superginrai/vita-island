@@ -36,10 +36,9 @@ function* searchApi(action) {
             type: 'SEARCH_RESULTS',
             payload: search.body,
         })
-        yield dispatch({
-            type: 'COVER_STATE',
-            payload: search.body,
-        })
+        // yield search.body.object.game.map({
+
+        // })
     } catch (error) { }
 }
 
