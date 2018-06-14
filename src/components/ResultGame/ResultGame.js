@@ -45,8 +45,8 @@ class GameCard extends Component {
         this.state = {
             game: {
                 title: this.props.result.name,
-                image_url: '',
-                genre_id: 1,
+                image_url: 'images/vitaLove.jpg',
+                genre_id: this.props.result.genres[0],
                 description: this.props.result.summary,
                 complete: false,
                 sealed: false,
@@ -56,6 +56,7 @@ class GameCard extends Component {
 
     componentDidMount() {
         this.getCovers(this.props.result.cover);
+        // this.checkGenre(this.props.result.genres);
     }
 
     getCovers = (thumbnail) => {
@@ -67,13 +68,28 @@ class GameCard extends Component {
                     cloudinary_id: thumbnail.cloudinary_id,
                 },
                 'cover_big', 'jpg');
+            console.log('ssoooo close', cover)
             this.setState({
                 game: {
+                    ...this.state.game,
                     image_url: cover,
                 }
             })
         }
     }
+
+    // checkGenre = (genre) => {
+    //     if (genre === undefined) {
+    //         console.log('genre is default');
+    //     } else {
+    //         this.setState({
+    //             game: {
+    //                 ...this.state.game,
+    //                 genre_id: genre[0],
+    //             }
+    //         })
+    //     }
+    // }
 
     // const cover = client.image(
     //     {
