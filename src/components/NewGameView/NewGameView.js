@@ -12,6 +12,9 @@ import GenreDropDown from '../GenreDropDown/GenreDropDown';
 import Button from '@material-ui/core/Button';
 import ResultGame from '../ResultGame/ResultGame';
 import igdb from 'igdb-api-node';
+import GameAddedSnackBar, { openSnackbar } from '../GameAddedSnackBar/GameAddedSnackBar';
+
+
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -97,7 +100,11 @@ class NewGameView extends Component {
         const action = { type: 'API_SEARCH', payload: this.state.newGame.search }
         this.props.dispatch(action);
         console.log(this.props.searchResults.searchResults);
-
+        this.setState({
+            newGame: {
+                search: '',
+            }
+        });
     }
 
     addNewGame = game => event => {
@@ -105,6 +112,13 @@ class NewGameView extends Component {
         event.preventDefault();
         const action = { type: 'ADD_GAME', payload: game }
         this.props.dispatch(action);
+        this.showNotifier();
+    }
+
+    showNotifier = (event) => {
+        // event.preventDefault();
+        console.log('snackssss');
+        openSnackbar();
     }
     // getApi = () => {
     //     // client.games({
@@ -184,8 +198,10 @@ class NewGameView extends Component {
         // const { classes } = props;
         // if (this.props.user.username) {
         content = (
+
             <div>
-                <ButtonAppBar currentView="Add a Game:"/>
+                <GameAddedSnackBar />
+                <ButtonAppBar currentView="Add a Game:" />
                 <br />
                 <br />
                 {/* <div className="add-item-container">
@@ -233,7 +249,7 @@ class NewGameView extends Component {
                         <FormControl>
                             <InputLabel htmlFor="apiSearch">
                                 Search:</InputLabel>
-                            <Input className="input" onChange={this.handleChange('search')} value={this.state.search} placeholder='game title' />
+                            <Input className="input" onChange={this.handleChange('search')} value={this.state.newGame.search} placeholder='game title' />
                         </FormControl>
                         <br />
                         {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
@@ -251,6 +267,7 @@ class NewGameView extends Component {
             </div>
         );
         return (
+
             <div>
                 {content}
             </div>

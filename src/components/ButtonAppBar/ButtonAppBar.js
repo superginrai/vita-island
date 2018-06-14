@@ -14,6 +14,7 @@ import Games from '@material-ui/icons/Games';
 const styles = {
     root: {
         flexGrow: 1,
+ 
     },
     flex: {
         flex: 1,
@@ -24,14 +25,22 @@ const styles = {
     // },
     DropDown: {
         marginRight: 50,
-    }
+    },
+    psx:  { background: 'linear-gradient(45deg, #0054A9 30%, #078BD2 90%)',
+    // borderRadius: 3,
+    // border: 0,
+    color: 'white',
+    // height: 48,
+    // padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(178, 215, 239, .30)',
+  },
 };
 
 function ButtonAppBar(props) {
     const { classes } = props;
     return (
         <div className={classes.root}>
-            <AppBar position="fixed">
+            <AppBar className={classes.psx} position="fixed">
                 <Toolbar>
                     <DropDown className={classes.DropDown}/>
                     <Typography variant="title" color="inherit" className={classes.flex}>

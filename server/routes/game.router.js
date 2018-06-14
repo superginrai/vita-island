@@ -22,9 +22,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     console.log('POST route:', req.body);
     if (req.isAuthenticated()) {
-        let queryText = `INSERT INTO game (title, favorite, genre_id, image_url, person_id)
-                VALUES ($1, $2, $3, $4, $5)`;
-        pool.query(queryText, [req.body.title, false, req.body.genre_id, req.body.image_url, req.user.id])
+        let queryText = `INSERT INTO game (title, favorite, description, genre_id, image_url, person_id)
+                VALUES ($1, $2, $3, $4, $5, $6)`;
+        pool.query(queryText, [req.body.title, false, req.body.description, req.body.genre_id, req.body.image_url, req.user.id])
             .then((result) => {
                 res.sendStatus(201);
             })
@@ -57,7 +57,7 @@ router.delete('/', (req, res) => {
 
 router.put('/', (req, res) => {
     console.log('PUT game route');
-    // if (req.isAuthenticated() && req.query.person_id == req.user.id) {
+    if (req.isAuthenticated() && req.body.person_id == req.user.id) {
         let queryText = `UPDATE game SET favorite=$1 WHERE id=$2`;
         console.log(req.body);
         pool.query(queryText, [req.body.favorite, req.body.id])
@@ -68,10 +68,46 @@ router.put('/', (req, res) => {
                 console.log('error on PUT: ', error)
                 res.sendStatus(500);
             })
-    // } else {
-    //     res.sendStatus(403);
-    // }
+    } else {
+        res.sendStatus(403);
+    }
 });
+
+router.put('/complete', (req, res) => {
+    console.log('PUT complete route');
+    if (req.isAuthenticated() && req.body.person_id == req.user.id) {
+        let queryText = `UPDATE game SET complete=$1 WHERE id=$2`;
+        console.log(req.body);
+        pool.query(queryText, [req.body.complete, req.body.id])
+            .then(() => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on put: ', error)
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+})
+
+router.put('/sealed', (req, res) => {
+    console.log('PUT sealed route');
+    if (req.isAuthenticated() && req.body.person_id == req.user.id) {
+        let queryText = `UPDATE game SET sealed=$1 WHERE id=$2`;
+        console.log(req.body);
+        pool.query(queryText, [req.body.sealed, req.body.id])
+            .then(() => {
+                res.sendStatus(200)
+            })
+            .catch((error) => {
+                console.log('error on put: ', error)
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+})
 
 router.get('/genre/:id', (req, res) => {
     console.log('GET genre route', req.user.id, req.params.id);

@@ -6,6 +6,7 @@ import Nav from '../../components/Nav/Nav';
 import DropDown from '../DropDown/DropDown';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 import GameCard from '../GameCard/GameCard';
+import swal from 'sweetalert';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -34,6 +35,18 @@ class CollectionView extends Component {
     }
 
     deleteGame = game => {
+        swal({
+            title: "For sure for sure?",
+            text: "Are you sure you want to remove this game from  your collection?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("The game has been removed.", {
+                icon: "success",
+              });
         axios.delete('/api/game', { params: { id: game.id, person_id: game.person_id } })
             .then((response) => {
                 console.log(response);
@@ -41,8 +54,11 @@ class CollectionView extends Component {
             })
             .catch((error) => {
                 console.log('error on delete', error);
-
-            })
+            });
+        } else {
+            swal("It will remain in your collection!");
+          }
+        });
     };
 
     // makeFavorite = game => {

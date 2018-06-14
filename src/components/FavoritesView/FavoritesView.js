@@ -5,6 +5,7 @@ import axios from 'axios';
 import DropDown from '../DropDown/DropDown';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 import GameCard from '../GameCard/GameCard';
+import swal from 'sweetalert';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -35,15 +36,30 @@ class FavoritesView extends Component {
     }
 
     deleteGame = game => {
-        axios.delete('/api/game', { params: {id: game.id, person_id: game.person_id }})
-            .then((response) => {
-                console.log(response);
-                this.getFavorites();
-            })
-            .catch((error) => {
-                console.log('error on delete', error);
-
-            })
+        swal({
+            title: "For sure for sure?",
+            text: "Are you sure you want to remove this game from  your collection?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("The game has been removed.", {
+                        icon: "success",
+                    });
+                    axios.delete('/api/game', { params: { id: game.id, person_id: game.person_id } })
+                        .then((response) => {
+                            console.log(response);
+                            this.getFavorites();
+                        })
+                        .catch((error) => {
+                            console.log('error on delete', error);
+                        })
+                } else {
+                    swal("It will remain in your collection!");
+                }
+            });
     };
 
     makeFavorite = (game) => {
@@ -108,15 +124,15 @@ class FavoritesView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Favorites">
-            {this.state.gameList.map(game =>
-                <GameCard key = {game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame} makeFavorite={this.makeFavorite}/>)}
-        </div>
+                {this.state.gameList.map(game =>
+                    <GameCard key={game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
+            </div>
         );
         //  }
 
         return (
             <div>
-                <ButtonAppBar currentView="Favorites"/>
+                <ButtonAppBar currentView="Favorites" />
                 {content}
             </div>
         );

@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import GenreDropDown from '../GenreDropDown/GenreDropDown';
+import swal from 'sweetalert';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -31,6 +32,7 @@ class GenreView extends Component {
     //         payload: genre,
     //     })
     // }
+
     handleGenre = (genre_id) => {
         // event.preventDefault();
         // const id = this.state.genre
@@ -48,15 +50,30 @@ class GenreView extends Component {
     }
 
     deleteGame = game => {
-        axios.delete('/api/game', { params: { id: game.id, person_id: game.person_id } })
-            .then((response) => {
-                console.log(response);
-                this.handleGenre(game.genre_id);
-            })
-            .catch((error) => {
-                console.log('error on delete', error);
-
-            })
+        swal({
+            title: "For sure for sure?",
+            text: "Are you sure you want to remove this game from  your collection?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("The game has been removed.", {
+                        icon: "success",
+                    });
+                    axios.delete('/api/game', { params: { id: game.id, person_id: game.person_id } })
+                        .then((response) => {
+                            console.log(response);
+                            this.handleGenre(game.genre_id);
+                        })
+                        .catch((error) => {
+                            console.log('error on delete', error);
+                        })
+                } else {
+                    swal("It will remain in your collection!");
+                }
+            });
     };
 
     makeFavorite = (game) => {
@@ -137,7 +154,7 @@ class GenreView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Genre">
-                          <ButtonAppBar addOn={<GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre}/>} currentView="Genre:"/>
+                <ButtonAppBar addOn={<GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />} currentView="Genre:" />
                 {/* <div>
                     <GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />
                 </div> */}

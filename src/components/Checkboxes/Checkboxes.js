@@ -5,16 +5,22 @@ import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import DeleteForever from '@material-ui/icons/DeleteForever';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import { connect } from 'react-redux';
+import { grey100 } from 'material-ui/styles/colors';
+import DeleteAlert, { handleOpen }from '../DeleteAlert/DeleteAlert';
+import Modal from '@material-ui/core/Modal';
 
 const styles = {
   root: {
-    color: green[600],
+    color: grey100,
     '&$checked': {
-      color: green[500],
+      color: grey100,
     },
   },
   checked: {},
@@ -26,28 +32,82 @@ const styles = {
     fontSize: 20,
   },
 };
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 
 class CheckboxLabels extends React.Component {
   state = {
-    checkedA: false,
-    checkedB: false,
+    checkedComplete: this.props.game.complete,
+    checkedSealed: this.props.game.sealed,
+    checkedFavorite: this.props.game.favorite,
+    open: false,
   };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
   };
 
+  completeGame = event => {
+    // event.preventDefault();
+    const body = {
+      person_id: this.props.game.person_id,
+      id: this.props.game.id,
+      complete: this.state.checkedComplete,
+    }
+    const action = { type: 'MAKE_COMPLETE', payload: body, }
+    this.props.dispatch(action);
+  }
+
+  sealedGame = event => {
+    // event.preventDefault();
+    const body = {
+      person_id: this.props.game.person_id,
+      id: this.props.game.id,
+      sealed: this.state.checkedSealed,
+    }
+    const action = { type: 'MAKE_SEALED', payload: body, }
+    this.props.dispatch(action);
+  }
+
+//   showNotifier = (event) => {
+//     // event.preventDefault();
+//     console.log('snackssss');
+//     handleOpen();
+// }
+
+  componentDidUpdate() {
+    this.completeGame();
+    this.sealedGame();
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
+      <div>
       <FormGroup row>
         <FormControlLabel
           control={
+            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={this.state.checkedFavorite} onChange={this.handleChange('checkedFavorite')} onClick={() => this.props.makeFavorite(this.props.game)}/>
+          }
+
+        />
+        <FormControlLabel
+          control={
             <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value='taco'
+              icon={<DeleteForever />} checkedIcon={<DeleteForever />} onClick={() => this.props.delete(this.props.game)}
+            />
+            
+          }
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checkedComplete}
+              onChange={this.handleChange('checkedComplete')}
+              value={this.props.game.complete}
             />
           }
           label="Complete"
@@ -55,15 +115,16 @@ class CheckboxLabels extends React.Component {
         <FormControlLabel
           control={
             <Checkbox
-              checked={this.state.checkedB}
-              onChange={this.handleChange('checkedB')}
-              value='taco'
+              checked={this.state.checkedSealed}
+              onChange={this.handleChange('checkedSealed')}
+              value={this.props.game.sealed}
               color="primary"
             />
           }
           label="Sealed"
         />
       </FormGroup>
+      </div>
     );
   }
 }
@@ -72,4 +133,4 @@ CheckboxLabels.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CheckboxLabels);
+export default connect(mapStateToProps)(CheckboxLabels);

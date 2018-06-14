@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Checkboxes from '../Checkboxes/Checkboxes';
+import InfoExpansionPanel from '../InfoExpansionPanel/InfoExpansionPanel.js';
+
+
 
 const styles = {
   card: {
@@ -37,15 +40,16 @@ function GameCard(props) {
             {props.title}
           </Typography>
           <CardActions>
-            <IconButton onClick={() => props.makeFavorite(props.game)} size="small" color="secondary">
+            {/* <IconButton onClick={() => props.makeFavorite(props.game)} size="small" color="secondary">
               <FavoriteBorder />
             </IconButton>
             <IconButton onClick={() => props.delete(props.game)}>
               <DeleteForever />
-            </IconButton>
-            <Checkboxes />
+            </IconButton> */}
+            <Checkboxes game={props.game} delete={props.delete} makeFavorite={props.makeFavorite} />
           </CardActions>
         </CardContent>
+        <InfoExpansionPanel game={props.game}/>
       </Card>
       <br />
       <br />
