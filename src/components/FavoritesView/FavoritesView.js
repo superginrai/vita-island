@@ -124,6 +124,7 @@ class FavoritesView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Favorites">
+            <br/>
                 {this.state.gameList.map(game =>
                     <GameCard key={game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
             </div>

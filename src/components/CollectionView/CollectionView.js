@@ -121,6 +121,7 @@ class CollectionView extends Component {
         //   if (this.props.user.username) {
         content = (
             <div className="Collection">
+            <br/>
                 {this.state.gameList.map(game =>
                     <GameCard key={game.id} game={game} title={game.title} image_url={game.image_url} genre={game.genre} favorite={game.favorite} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
             </div>

@@ -42,7 +42,7 @@ class CheckboxLabels extends React.Component {
     checkedComplete: this.props.game.complete,
     checkedSealed: this.props.game.sealed,
     checkedFavorite: this.props.game.favorite,
-    open: false,
+    // open: false,
   };
 
   handleChange = name => event => {

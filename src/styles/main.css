@@ -1,10 +1,29 @@
-body {
+/* body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+} */
+
+@font-face {
+    font-family: limited-run;
+    src: url("../fonts/Lazer84.ttf");
 }
+
+@font-face {
+    font-family: psx;
+    src: url("../fonts/Unique.ttf");
+}
+
+h1 {
+    font-family: psx;
+}
+
+/* h4 {
+    font-family: limited-run
+} */
 
 .instructions h1 {
     font-size: 24px;
     font-weight: 700;
+    
 }
 
 .instructions {

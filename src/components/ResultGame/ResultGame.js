@@ -56,7 +56,6 @@ class GameCard extends Component {
 
     componentDidMount() {
         this.getCovers(this.props.result.cover);
-        // this.checkGenre(this.props.result.genres);
     }
 
     getCovers = (thumbnail) => {
@@ -68,7 +67,6 @@ class GameCard extends Component {
                     cloudinary_id: thumbnail.cloudinary_id,
                 },
                 'cover_big', 'jpg');
-            console.log('ssoooo close', cover)
             this.setState({
                 game: {
                     ...this.state.game,
@@ -77,19 +75,6 @@ class GameCard extends Component {
             })
         }
     }
-
-    // checkGenre = (genre) => {
-    //     if (genre === undefined) {
-    //         console.log('genre is default');
-    //     } else {
-    //         this.setState({
-    //             game: {
-    //                 ...this.state.game,
-    //                 genre_id: genre[0],
-    //             }
-    //         })
-    //     }
-    // }
 
     // const cover = client.image(
     //     {

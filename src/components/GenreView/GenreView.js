@@ -154,6 +154,7 @@ class GenreView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Genre">
+            <br/>
                 <ButtonAppBar addOn={<GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />} currentView="Genre:" />
                 {/* <div>
                     <GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />

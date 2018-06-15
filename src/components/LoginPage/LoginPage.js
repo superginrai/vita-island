@@ -87,7 +87,7 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Welcome to VITA;island</h1>
           <div>
-            <img src='images/vitaLove.jpg' width="400" />
+            <img src='images/island.jpg' width="400" />
             <h4>Please Log In</h4>
               <FormControl>
                 <InputLabel htmlFor="username">

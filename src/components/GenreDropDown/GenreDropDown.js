@@ -82,7 +82,7 @@ class GenreDropDown extends React.Component {
                 <FormControl fullWidth color="secondary">
                     {/* <InputLabel htmlFor="genre">
                Genre:</InputLabel> */}
-                    <Select color="secondary"
+                    <Select color={lightBlue100}
                         // id="simple-menu"
                         // anchorEl={anchorEl}
                         // open={Boolean(anchorEl)}
@@ -95,9 +95,9 @@ class GenreDropDown extends React.Component {
                         }}
                     >
                         {/* <MenuItem value="">
-                            <em>Genre</em>
+                            <em>Choose One</em>
                         </MenuItem> */}
-                        <MenuItem color="secondary" value={31}>Adventure</MenuItem>
+                        <MenuItem value={31}>Adventure</MenuItem>
                         <MenuItem value={33}>Arcade</MenuItem>
                         <MenuItem value={4}>Fighting</MenuItem>
                         <MenuItem value={25}>Hack 'n' Slash</MenuItem>

@@ -13,7 +13,28 @@ import Button from '@material-ui/core/Button';
 import ResultGame from '../ResultGame/ResultGame';
 import igdb from 'igdb-api-node';
 import GameAddedSnackBar, { openSnackbar } from '../GameAddedSnackBar/GameAddedSnackBar';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+        justify: 'center',
+        alignItems: 'center',
+    },
+    paper: {
+        // padding: theme.spacing.unit * 2,
+        // textAlign: 'center',
+        // color: theme.palette.text.secondary,
+        justify: 'center',
+        alignItems: 'center',
+        padding: theme.spacing.unit * 3,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+});
 
 
 const mapStateToProps = state => ({
@@ -194,6 +215,7 @@ class NewGameView extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         let content = null;
         // const { classes } = props;
         // if (this.props.user.username) {
@@ -201,7 +223,7 @@ class NewGameView extends Component {
 
             <div>
                 <GameAddedSnackBar />
-                <ButtonAppBar currentView="Add a Game:" />
+                <ButtonAppBar currentView="Add;Games" />
                 <br />
                 <br />
                 {/* <div className="add-item-container">
@@ -243,25 +265,42 @@ class NewGameView extends Component {
         </Button>
                 </form> */}
 
-                <div className="search api">
+                <div className={classes.root}>
                     <br />
-                    <form onSubmit={this.getApi}>
-                        <FormControl>
-                            <InputLabel htmlFor="apiSearch">
-                                Search:</InputLabel>
-                            <Input className="input" onChange={this.handleChange('search')} value={this.state.newGame.search} placeholder='game title' />
-                        </FormControl>
-                        <br />
-                        {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
-                        <Button variant="contained" size="large" color="primary" type="submit">
-                            FIND GAMES
+                    <img src='images/tokyo.jpg' width="400" />
+
+                    <Grid container spacing={24} justify={'center'}>
+
+
+                        <Paper alignItems={'center'} className={classes.paper}>
+                            <form onSubmit={this.getApi}>
+                                <Grid item xs>
+                                    <FormControl>
+                                        <InputLabel htmlFor="apiSearch">
+                                            Search:</InputLabel>
+                                        <Input className="input" onChange={this.handleChange('search')} value={this.state.newGame.search} placeholder='game title' />
+                                    </FormControl>
+
+                                </Grid>
+                                <br />
+                                <br />
+                                {/* <input className="button" type="submit" value="DEPLOY IT" /> */}
+                                <Grid item xs>
+                                    <Button variant="contained" size="large" color="primary" type="submit">
+                                        FIND GAMES
         </Button>
-                    </form>
+
+                                </Grid>
+
+
+                            </form>
+                        </Paper>
+                    </Grid>
                 </div>
                 <div>
                     <ul>
                         {this.props.searchResults.map(result =>
-                            <ResultGame key={result.id} result={result} addNewGame={this.addNewGame} /> )}
+                            <ResultGame key={result.id} result={result} addNewGame={this.addNewGame} />)}
                     </ul>
                 </div>
             </div>
@@ -275,4 +314,8 @@ class NewGameView extends Component {
     }
 }
 
-export default connect(mapStateToProps)(NewGameView);
+NewGameView.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(NewGameView));
