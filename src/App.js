@@ -5,6 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
@@ -20,6 +21,8 @@ import NewGameView from './components/NewGameView/NewGameView';
 import ButtonAppBar from './components/ButtonAppBar/ButtonAppBar';
 
 const App = () => (
+  // <React.Fragment>
+  //      <CssBaseline />
   <div>
     {/* <ButtonAppBar/> */}
     {/* <Header title="VITA;island" /> */}
@@ -64,6 +67,7 @@ const App = () => (
       </Switch>
     </Router>
   </div>
+  // </React.Fragment>
 );
 
 export default App;

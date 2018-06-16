@@ -11,12 +11,14 @@ import { lightBlue100 } from 'material-ui/styles/colors';
 
 
 const styles = {
-  MenuItem: {
-     color: lightBlue100,
-     text: lightBlue100,
-     
-  }
-  };
+    MenuItem: {
+        color: lightBlue100,
+        text: lightBlue100,
+    },
+    genreList: {
+        text: lightBlue100,
+    }
+};
 
 class GenreDropDown extends React.Component {
     constructor(props) {
@@ -58,10 +60,10 @@ class GenreDropDown extends React.Component {
 
     render() {
         // const { anchorEl } = this.state;
-
+        const { classes } = this.props;
         return (
-            <div>
-                 {/* <Button
+            <div className={classes.genreList}>
+                {/* <Button
                     aria-owns={anchorEl ? 'simple-menu' : null}
                     aria-haspopup="true"
                     onClick={this.handleClick}
@@ -80,9 +82,8 @@ class GenreDropDown extends React.Component {
                     <MenuItem onClick={() => this.props.handleGenre(12)} >Visual Novel</MenuItem>
                 </Menu> */}
                 <FormControl fullWidth color="secondary">
-                    {/* <InputLabel htmlFor="genre">
-               Genre:</InputLabel> */}
-                    <Select color={lightBlue100}
+                    {/* <InputLabel htmlFor="genre"> Choose One</InputLabel> */}
+                    <Select 
                         // id="simple-menu"
                         // anchorEl={anchorEl}
                         // open={Boolean(anchorEl)}

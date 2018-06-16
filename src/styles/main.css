@@ -2,6 +2,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 } */
 
+/* * {
+    margin: 0,
+} */
+
 @font-face {
     font-family: limited-run;
     src: url("../fonts/Lazer84.ttf");

@@ -17,12 +17,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import './NewGameView.css'
+import Tokyo from '../../images/tokyo.jpg';
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         justify: 'center',
-        alignItems: 'center',
+        alignItems: 'center',        
     },
     paper: {
         // padding: theme.spacing.unit * 2,
@@ -267,6 +269,9 @@ class NewGameView extends Component {
 
                 <div className={classes.root}>
                     <br />
+                    <br/>
+                    <br />
+                    <br/>
                     <img src='images/tokyo.jpg' width="400" />
 
                     <Grid container spacing={24} justify={'center'}>
@@ -280,7 +285,6 @@ class NewGameView extends Component {
                                             Search:</InputLabel>
                                         <Input className="input" onChange={this.handleChange('search')} value={this.state.newGame.search} placeholder='game title' />
                                     </FormControl>
-
                                 </Grid>
                                 <br />
                                 <br />
