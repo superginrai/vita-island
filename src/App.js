@@ -18,6 +18,7 @@ import CollectionView from './components/CollectionView/CollectionView';
 import FavoritesView from './components/FavoritesView/FavoritesView';
 import GenreView from './components/GenreView/GenreView';
 import NewGameView from './components/NewGameView/NewGameView';
+import SearchView from './components/SearchView/SeachView';
 import ButtonAppBar from './components/ButtonAppBar/ButtonAppBar';
 
 const App = () => (
@@ -60,6 +61,10 @@ const App = () => (
          <Route
           path="/newGame"
           component={NewGameView}
+        />
+          <Route
+          path="/search"
+          component={SearchView}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>4O4</h1>} />

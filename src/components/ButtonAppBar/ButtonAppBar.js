@@ -10,6 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import DropDown from '../DropDown/DropDown';
 import FiberNew from '@material-ui/icons/FiberNew';
 import Games from '@material-ui/icons/Games';
+import Search from '@material-ui/icons/Search';
 import './ButtonAppBar.css';
 import Paper from '@material-ui/core/Paper';
 import { blue100 } from 'material-ui/styles/colors';
@@ -67,6 +68,9 @@ function ButtonAppBar(props) {
                     <Typography variant="title" className={classes.flex}>
                         {props.addOn}
                     </Typography>
+                    <IconButton component="a" href="/search" className={classes.button} aria-label="Search">
+        <Search />
+      </IconButton>
                     {/* <div className="icon-box"> */}
                     {/* <Paper className={classes.paper} elevation={2}> */}
                     <Button component="a" href="/newGame" size="small" variant="contained" color="primary" className={classes.button}>

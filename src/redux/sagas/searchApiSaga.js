@@ -26,7 +26,7 @@ function* searchApi(action) {
                     'platforms-eq': '46',
                     'genres-exists': '1',
                     'name-exists': '1',
-                    'summary-exists':'1',
+                    'summary-exists': '1',
                 },
                 fields: '*', // Return all fields
                 limit: 10, // Limit to 5 results
@@ -41,6 +41,17 @@ function* searchApi(action) {
         // yield search.body.object.game.map({
 
         // })
+    } catch (error) { }
+}
+
+function* localSearch(action) {
+    try {
+        console.log('are we there yet?', action.payload)
+        const searchResponse = yield call(axios.get, `/api/game/search/${action.payload}`);
+        yield dispatch({
+            type: 'SEARCH_RESULTS',
+            payload: searchResponse.data,
+        })
     } catch (error) { }
 }
 
@@ -71,6 +82,7 @@ function* searchApiSaga() {
     yield takeEvery('ADD_GAME', addGame);
     yield takeEvery('MAKE_COMPLETE', makeComplete);
     yield takeEvery('MAKE_SEALED', makeSealed);
+    yield takeEvery('LOCAL_SEARCH', localSearch)
 }
 
 export default searchApiSaga;

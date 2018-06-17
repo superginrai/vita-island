@@ -270,9 +270,12 @@ class NewGameView extends Component {
                 <div className={classes.root}>
                     <br />
                     <br/>
-                    <br />
                     <br/>
-                    <img src='images/tokyo.jpg' width="400" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    {/* <img src='images/boat.jpg' width="425" /> */}
 
                     <Grid container spacing={24} justify={'center'}>
 

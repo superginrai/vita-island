@@ -109,6 +109,23 @@ router.put('/sealed', (req, res) => {
     }
 })
 
+router.get('/search/:id', (req, res) => {
+    console.log('GET by search route', req.user.id, req.params.id);
+    if (req.isAuthenticated()) {
+        let queryText = `SELECT * FROM game WHERE person_id = $1 AND title LIKE '%${req.params.id}%'`;
+        pool.query(queryText, [req.user.id])
+            .then((result) => {
+                console.log(result.rows);
+                res.send(result.rows);
+            }).catch((error) => {
+                console.log('error on games GET: ', error);
+                res.sendStatus(500);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 router.get('/genre/:id', (req, res) => {
     console.log('GET genre route', req.user.id, req.params.id);
     if (req.isAuthenticated()) {
@@ -123,7 +140,6 @@ router.get('/genre/:id', (req, res) => {
     } else {
         res.sendStatus(403);
     }
-
 });
 
 router.get('/favorites/:id', (req, res) => {
