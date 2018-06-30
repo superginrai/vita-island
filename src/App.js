@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
@@ -19,14 +18,11 @@ import FavoritesView from './components/FavoritesView/FavoritesView';
 import GenreView from './components/GenreView/GenreView';
 import NewGameView from './components/NewGameView/NewGameView';
 import SearchView from './components/SearchView/SeachView';
-import ButtonAppBar from './components/ButtonAppBar/ButtonAppBar';
 
 const App = () => (
   // <React.Fragment>
   //      <CssBaseline />
   <div>
-    {/* <ButtonAppBar/> */}
-    {/* <Header title="VITA;island" /> */}
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />

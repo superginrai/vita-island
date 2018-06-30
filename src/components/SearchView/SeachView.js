@@ -5,7 +5,6 @@ import axios from 'axios';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import GameCard from '../GameCard/GameCard';
@@ -53,29 +52,13 @@ class SearchView extends Component {
         });
     }
 
-    // searchCollection = (searchParams) => {
-    //     // event.preventDefault();
-    //     axios.get(`/api/game/search/${searchParams}`)
-    //         .then((response) => {
-    //             console.log('ber?')
-    //             console.log(response.data);
-    //             this.setState({
-    //                 // ...this.state.gameList,
-    //                 gameList: response.data,
-    //             });
-    //         })
-    //         .catch((error) => {
-    //             console.log('error on games get: ', error);
-    //         })
-    // }
-
     searchCollection = event => {
         event.preventDefault();
         const action = { type: 'LOCAL_SEARCH', payload: this.state.search }
         this.props.dispatch(action);
         console.log('tacos', action);
         this.setState({
-                search: '',
+            search: '',
         });
     }
 
@@ -95,7 +78,6 @@ class SearchView extends Component {
                     axios.delete('/api/game', { params: { id: game.id, person_id: game.person_id } })
                         .then((response) => {
                             console.log(response);
-                            // this.handleGenre(game.genre_id);
                         })
                         .catch((error) => {
                             console.log('error on delete', error);
@@ -109,7 +91,6 @@ class SearchView extends Component {
     makeFavorite = (game) => {
         console.log(game.favorite, 'fav clicked');
         if (game.favorite === true) {
-            console.log('taco click');
             const body = {
                 id: game.id,
                 person_id: game.person_id,
@@ -118,7 +99,6 @@ class SearchView extends Component {
             axios.put('/api/game', body)
                 .then((response) => {
                     console.log(response);
-                    // this.handleGenre(game.genre_id);
                 })
                 .catch((error) => {
                     console.log('error on favorite put', error);
@@ -134,7 +114,6 @@ class SearchView extends Component {
             axios.put('/api/game', body)
                 .then((response) => {
                     console.log(response);
-                    // this.handleGenre(game.genre_id);
                 })
                 .catch((error) => {
                     console.log('error on favorite put', error);
@@ -175,7 +154,6 @@ class SearchView extends Component {
                     <br />
                     <br />
                     <br />
-                    {/* <img src='images/tokyo.jpg' width="400" /> */}
                     <Grid container spacing={24} justify={'center'}>
                         <Paper alignItems={'center'} className={classes.paper}>
                             <form onSubmit={this.searchCollection}>
@@ -192,10 +170,7 @@ class SearchView extends Component {
                                     <Button variant="contained" size="large" color="primary" type="submit">
                                         SEARCH COLLECTION
         </Button>
-
                                 </Grid>
-
-
                             </form>
                         </Paper>
                     </Grid>
