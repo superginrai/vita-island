@@ -98,20 +98,11 @@ class FavoritesView extends Component {
         }
     };
 
-    // handleChange = propertyName => event => {
-    //     event.preventDefault();
-    //     this.setState({
-    //         genre: event.target.value,
-    //     });
-    //     console.log(this.state);
-    // }
-
     componentDidMount() {
         this.props.dispatch(fetchUser());
         this.getFavorites();
     }
 
-    //you better be logged in or ELSE
     componentDidUpdate() {
         if (!this.props.user.isLoading && this.props.user.userName === null) {
             this.props.history.push('home');
@@ -124,12 +115,12 @@ class FavoritesView extends Component {
         // if (this.props.user.username) {
         content = (
             <div className="Favorites">
-            <br/>
+                <br />
                 {this.state.gameList.map(game =>
                     <GameCard key={game.id} title={game.title} image_url={game.image_url} favorite={game.favorite} game={game} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
             </div>
         );
-        //  }
+        //}
 
         return (
             <div>
