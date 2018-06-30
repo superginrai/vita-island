@@ -1,0 +1,13 @@
+ body {
+    background: url("../../images/island.jpg")no-repeat center center fixed;
+    color: white;
+}
+
+/* .vita {
+    background-image: url("../../images/island.jpg")no-repeat center center fixed;
+    background-size: cover;
+} */
+
+text {
+    color: white;
+}

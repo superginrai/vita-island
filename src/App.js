@@ -5,8 +5,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
@@ -17,12 +17,12 @@ import CollectionView from './components/CollectionView/CollectionView';
 import FavoritesView from './components/FavoritesView/FavoritesView';
 import GenreView from './components/GenreView/GenreView';
 import NewGameView from './components/NewGameView/NewGameView';
-import ButtonAppBar from './components/ButtonAppBar/ButtonAppBar';
+import SearchView from './components/SearchView/SeachView';
 
 const App = () => (
+  // <React.Fragment>
+  //      <CssBaseline />
   <div>
-    {/* <ButtonAppBar/> */}
-    {/* <Header title="VITA;island" /> */}
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -58,12 +58,17 @@ const App = () => (
           path="/newGame"
           component={NewGameView}
         />
+          <Route
+          path="/search"
+          component={SearchView}
+        />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>4O4</h1>} />
 
       </Switch>
     </Router>
   </div>
+  // </React.Fragment>
 );
 
 export default App;

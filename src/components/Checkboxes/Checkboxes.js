@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { connect } from 'react-redux';
 import { grey100 } from 'material-ui/styles/colors';
-import DeleteAlert, { handleOpen }from '../DeleteAlert/DeleteAlert';
-import Modal from '@material-ui/core/Modal';
 
 const styles = {
   root: {
@@ -42,7 +35,6 @@ class CheckboxLabels extends React.Component {
     checkedComplete: this.props.game.complete,
     checkedSealed: this.props.game.sealed,
     checkedFavorite: this.props.game.favorite,
-    open: false,
   };
 
   handleChange = name => event => {
@@ -70,12 +62,6 @@ class CheckboxLabels extends React.Component {
     const action = { type: 'MAKE_SEALED', payload: body, }
     this.props.dispatch(action);
   }
-
-//   showNotifier = (event) => {
-//     // event.preventDefault();
-//     console.log('snackssss');
-//     handleOpen();
-// }
 
   componentDidUpdate() {
     this.completeGame();

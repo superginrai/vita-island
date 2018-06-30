@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../redux/actions/userActions';
 import axios from 'axios';
-import Nav from '../../components/Nav/Nav';
-import DropDown from '../DropDown/DropDown';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 import GameCard from '../GameCard/GameCard';
 import swal from 'sweetalert';
@@ -61,12 +59,6 @@ class CollectionView extends Component {
         });
     };
 
-    // makeFavorite = game => {
-    //     if (game.favorite = true) {
-    //         axios.put('/api/game', { params: { id: game.id, favorite: game.favorite } })
-    //     }
-    // }
-
     makeFavorite = (game) => {
         console.log(game.favorite, 'fav clicked');
         if (game.favorite === true) {
@@ -108,7 +100,6 @@ class CollectionView extends Component {
         this.getUsersGames();
     }
 
-    //you better be logged in or ELSE
     componentDidUpdate() {
         if (!this.props.user.isLoading && this.props.user.userName === null) {
             this.props.history.push('home');
@@ -121,6 +112,7 @@ class CollectionView extends Component {
         //   if (this.props.user.username) {
         content = (
             <div className="Collection">
+            <br/>
                 {this.state.gameList.map(game =>
                     <GameCard key={game.id} game={game} title={game.title} image_url={game.image_url} genre={game.genre} favorite={game.favorite} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
             </div>

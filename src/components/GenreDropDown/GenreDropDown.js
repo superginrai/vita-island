@@ -1,9 +1,6 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import './GenreDropDown.css';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,12 +8,14 @@ import { lightBlue100 } from 'material-ui/styles/colors';
 
 
 const styles = {
-  MenuItem: {
-     color: lightBlue100,
-     text: lightBlue100,
-     
-  }
-  };
+    MenuItem: {
+        color: lightBlue100,
+        text: lightBlue100,
+    },
+    genreList: {
+        text: lightBlue100,
+    }
+};
 
 class GenreDropDown extends React.Component {
     constructor(props) {
@@ -27,15 +26,6 @@ class GenreDropDown extends React.Component {
         };
     }
 
-    // handleInputChangeFor = propertyName => (event) => {
-    //     console.log(this.state.genre)
-    //     this.setState({
-    //       [propertyName]: event.target.value,
-    //     });
-    //     console.log(propertyName);
-    //     this.props.handleGenre (this.state.genre);
-    //   }
-
     handleInputChangeFor = propertyName => (event) => {
         console.log(this.state.genre)
         this.setState({
@@ -43,50 +33,15 @@ class GenreDropDown extends React.Component {
         });
         console.log(propertyName);
         this.props.handleGenre(event.target.value);
-        // this.setState({
-        //     [propertyName]: '',
-        // })
     }
-
-    // handleClick = event => {
-    //     this.setState({ anchorEl: event.currentTarget });
-    // };
-
-    // handleClose = () => {
-    //     this.setState({ anchorEl: null });
-    // };
 
     render() {
         // const { anchorEl } = this.state;
-
+        const { classes } = this.props;
         return (
-            <div>
-                 {/* <Button
-                    aria-owns={anchorEl ? 'simple-menu' : null}
-                    aria-haspopup="true"
-                    onClick={this.handleClick}
-                >
-                    Select Genre
-        </Button>
-                <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={this.handleClose}
-                >
-                    <MenuItem onClick={() => this.props.handleGenre(1)} >Action</MenuItem>
-                    <MenuItem onClick={() => this.props.handleGenre(7)} >RPG</MenuItem>
-                    <MenuItem onClick={() => this.props.handleGenre(9)} >Simulation</MenuItem>
-                    <MenuItem onClick={() => this.props.handleGenre(12)} >Visual Novel</MenuItem>
-                </Menu> */}
+            <div className={classes.genreList}>
                 <FormControl fullWidth color="secondary">
-                    {/* <InputLabel htmlFor="genre">
-               Genre:</InputLabel> */}
-                    <Select color="secondary"
-                        // id="simple-menu"
-                        // anchorEl={anchorEl}
-                        // open={Boolean(anchorEl)}
-                        // onClose={this.handleClose}
+                    <Select
                         value={this.state.genre}
                         onChange={this.handleInputChangeFor('genre')}
                         inputProps={{
@@ -94,10 +49,7 @@ class GenreDropDown extends React.Component {
                             id: 'genre',
                         }}
                     >
-                        {/* <MenuItem value="">
-                            <em>Genre</em>
-                        </MenuItem> */}
-                        <MenuItem color="secondary" value={31}>Adventure</MenuItem>
+                        <MenuItem value={31}>Adventure</MenuItem>
                         <MenuItem value={33}>Arcade</MenuItem>
                         <MenuItem value={4}>Fighting</MenuItem>
                         <MenuItem value={25}>Hack 'n' Slash</MenuItem>

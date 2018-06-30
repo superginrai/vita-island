@@ -12,6 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import './LoginPage.css'
+import Tokyo from '../../images/island.jpg';
+
 // import VitaLove from '../../../public/images/vitaLove';
 
 const mapStateToProps = state => ({
@@ -82,12 +85,11 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div class="vita">
         {this.renderAlert()}
         <form onSubmit={this.login}>
           <h1>Welcome to VITA;island</h1>
           <div>
-            <img src='images/vitaLove.jpg' width="400" />
             <h4>Please Log In</h4>
               <FormControl>
                 <InputLabel htmlFor="username">
