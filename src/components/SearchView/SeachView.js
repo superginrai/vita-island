@@ -26,6 +26,7 @@ const styles = theme => ({
         alignItems: 'center',
         padding: theme.spacing.unit * 3,
         textAlign: 'center',
+        marginTop: '185px',
         color: theme.palette.text.secondary,
     },
 });
@@ -56,7 +57,6 @@ class SearchView extends Component {
         event.preventDefault();
         const action = { type: 'LOCAL_SEARCH', payload: this.state.search }
         this.props.dispatch(action);
-        console.log('tacos', action);
         this.setState({
             search: '',
         });
@@ -89,7 +89,6 @@ class SearchView extends Component {
     };
 
     makeFavorite = (game) => {
-        console.log(game.favorite, 'fav clicked');
         if (game.favorite === true) {
             const body = {
                 id: game.id,
@@ -123,7 +122,6 @@ class SearchView extends Component {
 
     showNotifier = (event) => {
         // event.preventDefault();
-        console.log('snackssss');
         openSnackbar();
     }
 
@@ -144,16 +142,7 @@ class SearchView extends Component {
             <div>
                 <GameAddedSnackBar />
                 <ButtonAppBar currentView="Search;Collection" />
-                <br />
-                <br />
                 <div className={classes.root}>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                     <Grid container spacing={24} justify={'center'}>
                         <Paper alignItems={'center'} className={classes.paper}>
                             <form onSubmit={this.searchCollection}>
@@ -164,9 +153,7 @@ class SearchView extends Component {
                                         <Input className="input" onChange={this.handleSearch()} value={this.state.search} placeholder='game title' />
                                     </FormControl>
                                 </Grid>
-                                <br />
-                                <br />
-                                <Grid item xs>
+                                <Grid item xs style={{ marginTop: 35 }}>
                                     <Button variant="contained" size="large" color="primary" type="submit">
                                         SEARCH COLLECTION
         </Button>

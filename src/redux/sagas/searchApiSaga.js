@@ -18,7 +18,7 @@ function* searchApi(action) {
                     'summary-exists': '1',
                 },
                 fields: '*', // Return all fields
-                limit: 10, // Limit to 5 results
+                limit: 10, // Limit to 10 results
                 search: action.payload
             });
         console.log(search.body);

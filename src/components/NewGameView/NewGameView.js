@@ -27,13 +27,11 @@ const styles = theme => ({
         alignItems: 'center',
     },
     paper: {
-        // padding: theme.spacing.unit * 2,
-        // textAlign: 'center',
-        // color: theme.palette.text.secondary,
         justify: 'center',
         alignItems: 'center',
         padding: theme.spacing.unit * 3,
         textAlign: 'center',
+        marginTop: '185px',
         color: theme.palette.text.secondary,
     },
 });
@@ -114,7 +112,6 @@ class NewGameView extends Component {
 
     showNotifier = (event) => {
         // event.preventDefault();
-        console.log('snackssss');
         openSnackbar();
     }
 
@@ -136,16 +133,7 @@ class NewGameView extends Component {
             <div>
                 <GameAddedSnackBar />
                 <ButtonAppBar currentView="Add;Games" />
-                <br />
-                <br />
                 <div className={classes.root}>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                     <Grid container spacing={24} justify={'center'}>
                         <Paper alignItems={'center'} className={classes.paper}>
                             <form onSubmit={this.getApi}>
@@ -156,9 +144,7 @@ class NewGameView extends Component {
                                         <Input className="input" onChange={this.handleChange('search')} value={this.state.newGame.search} placeholder='game title' />
                                     </FormControl>
                                 </Grid>
-                                <br />
-                                <br />
-                                <Grid item xs>
+                                <Grid item xs style={{ marginTop: 35 }}>
                                     <Button variant="contained" size="large" color="primary" type="submit">
                                         FIND GAMES
         </Button>
