@@ -14,6 +14,7 @@ import igdb from 'igdb-api-node';
 const styles = theme => ({
     card: {
         maxWidth: 400,
+        marginBottom: 50,
     },
     media: {
         height: 530,
@@ -88,9 +89,6 @@ class GameCard extends Component {
                         </CardActions>
                     </CardContent>
                 </Card>
-                <br />
-                <br />
-                <br />
             </div>
         );
     }
