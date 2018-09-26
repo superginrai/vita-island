@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +10,7 @@ import DropDown from '../DropDown/DropDown';
 import FiberNew from '@material-ui/icons/FiberNew';
 import Games from '@material-ui/icons/Games';
 import Search from '@material-ui/icons/Search';
+import { connect } from 'react-redux';
 import './ButtonAppBar.css';
 
 const styles = {
@@ -36,32 +37,44 @@ const styles = {
     },
 };
 
-function ButtonAppBar(props) {
-    const { classes } = props;
-    return (
-        <div className={classes.root}>
-            <AppBar className={classes.psx} position="fixed">
-                <Toolbar>
-                    <DropDown className={classes.DropDown} />
-                    <Typography variant="title" color="inherit" className={classes.text}>
-                        <h3>{props.currentView}</h3>
-                    </Typography>
-                    <Typography variant="title" className={classes.flex}>
-                        {props.addOn}
-                    </Typography>
-                    <IconButton component="a" href="/search" className={classes.button} aria-label="Search">
-                        <Search />
-                    </IconButton>
-                    <Button component="a" href="/newGame" size="small" variant="contained" color="primary" className={classes.button}>
-                        <Games /><FiberNew /></Button>
-                </Toolbar>
-            </AppBar>
-        </div>
-    );
+
+
+class ButtonAppBar extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    addNew = () => {
+        this.props.history.push('/newGame');
+    }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className={classes.root}>
+                <AppBar className={classes.psx} position="fixed">
+                    <Toolbar>
+                        <DropDown className={classes.DropDown} />
+                        <Typography variant="title" color="inherit" className={classes.text}>
+                            <h3>{this.props.currentView}</h3>
+                        </Typography>
+                        <Typography variant="title" className={classes.flex}>
+                            {this.props.addOn}
+                        </Typography>
+                        <IconButton component="a" href="/search" className={classes.button} aria-label="Search">
+                            <Search />
+                        </IconButton>
+                        <Button component="a" onClick={this.addNew} size="small" variant="contained" color="primary" className={classes.button}>
+                            <Games /><FiberNew /></Button>
+                    </Toolbar>
+                </AppBar>
+            </div>
+        );
+    }
 }
 
 ButtonAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default connect()(withStyles(styles)(ButtonAppBar));
