@@ -105,7 +105,7 @@ VALUES ('Action'),
 
 ## Authors
 
-* Cory Booth
+* [Cory Booth](https://www.linkedin.com/in/cory-booth-2005/)
 
 
 ## Acknowledgments
