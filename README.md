@@ -111,3 +111,4 @@ VALUES ('Action'),
 ## Acknowledgments
 
 * [IGDB API](https://igdb.github.io/api/)
+
