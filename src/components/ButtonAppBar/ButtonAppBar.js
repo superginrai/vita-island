@@ -44,9 +44,9 @@ class ButtonAppBar extends Component {
         super(props)
     }
 
-    addNew = () => {
-        this.props.history.push('/newGame');
-    }
+    // addNew = () => {
+    //     this.props.history.push('/newGame');
+    // }
 
     render() {
         const { classes } = this.props;
@@ -64,7 +64,7 @@ class ButtonAppBar extends Component {
                         <IconButton component="a" href="/search" className={classes.button} aria-label="Search">
                             <Search />
                         </IconButton>
-                        <Button component="a" onClick={this.addNew} size="small" variant="contained" color="primary" className={classes.button}>
+                        <Button component="a" href="/newGame" size="small" variant="contained" color="primary" className={classes.button}>
                             <Games /><FiberNew /></Button>
                     </Toolbar>
                 </AppBar>
