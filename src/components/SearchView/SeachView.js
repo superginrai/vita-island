@@ -65,7 +65,7 @@ class SearchView extends Component {
     deleteGame = game => {
         swal({
             title: "For sure for sure?",
-            text: "Are you sure you want to remove this game from  your collection?",
+            text: "Are you sure you want to remove this game from your collection?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
