@@ -98,6 +98,30 @@ class GenreView extends Component {
         }
     };
 
+    addNew = () => {
+        this.props.history.push('/newGame');
+    }
+
+    localSearch = () => {
+        this.props.history.push('/search');
+    }
+
+    collectionNav = () => {
+        this.props.history.push('/collection');
+    }
+
+    favNav = () => {
+        this.props.history.push('/favorites');
+    }
+
+    genreNav = () => {
+        this.props.history.push('genre');
+    }
+
+    logOut = () => {
+        this.props.history.push('/home');
+    }
+
     componentDidMount() {
         this.props.dispatch(fetchUser());
     }
@@ -115,7 +139,7 @@ class GenreView extends Component {
         content = (
             <div className="Genre">
             <br/>
-                <ButtonAppBar addOn={<GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />} currentView="Genre:" />
+                <ButtonAppBar addOn={<GenreDropDown genreId={this.state.genre} handleGenre={this.handleGenre} />} addNew={this.addNew} localSearch={this.localSearch} collectionNav={this.collectionNav} favNav={this.favNav} genreNav={this.genreNav} logOut={this.logOut} currentView="Genre:" />
                 {this.state.gameList.map(game =>
                     <GameCard key={game.id} title={game.title} image_url={game.image_url} genre={game.genre} favorite={game.favorite} game={game} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
             </div>

@@ -127,6 +127,18 @@ class NewGameView extends Component {
         this.props.history.push('/collection');
     }
 
+    favNav = () => {
+        this.props.history.push('/favorites');
+    }
+
+    genreNav = () => {
+        this.props.history.push('genre');
+    }
+
+    logOut = () => {
+        this.props.history.push('/home');
+    }
+
     componentDidMount() {
         this.props.dispatch(fetchUser());
     }
@@ -144,7 +156,7 @@ class NewGameView extends Component {
 
             <div>
                 <GameAddedSnackBar />
-                <ButtonAppBar addNew={this.addNew} localSearch={this.localSearch} collectionNav={this.collectionNav} currentView="Add;Games" />
+                <ButtonAppBar addNew={this.addNew} localSearch={this.localSearch} collectionNav={this.collectionNav} favNav={this.favNav} genreNav={this.genreNav} logOut={this.logOut}  currentView="Add;Games" />
                 <div className={classes.root}>
                     <Grid container spacing={24} justify={'center'}>
                         <Paper alignItems={'center'} className={classes.paper}>

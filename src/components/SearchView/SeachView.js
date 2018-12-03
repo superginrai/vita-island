@@ -133,6 +133,22 @@ class SearchView extends Component {
         this.props.history.push('/search');
     }
 
+    collectionNav = () => {
+        this.props.history.push('/collection');
+    }
+
+    favNav = () => {
+        this.props.history.push('/favorites');
+    }
+
+    genreNav = () => {
+        this.props.history.push('genre');
+    }
+
+    logOut = () => {
+        this.props.history.push('/home');
+    }
+
     componentDidMount() {
         this.props.dispatch(fetchUser());
     }
@@ -149,7 +165,7 @@ class SearchView extends Component {
         content = (
             <div>
                 <GameAddedSnackBar />
-                <ButtonAppBar addNew={this.addNew} localSearch={this.localSearch} currentView="Search;Collection" />
+                <ButtonAppBar addNew={this.addNew} localSearch={this.localSearch} collectionNav={this.collectionNav} favNav={this.favNav} genreNav={this.genreNav} logOut={this.logOut} currentView="Search;Collection" />
                 <div className={classes.root}>
                     <Grid container spacing={24} justify={'center'}>
                         <Paper alignItems={'center'} className={classes.paper}>

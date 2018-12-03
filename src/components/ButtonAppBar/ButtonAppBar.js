@@ -54,7 +54,7 @@ class ButtonAppBar extends Component {
             <div className={classes.root}>
                 <AppBar className={classes.psx} position="fixed">
                     <Toolbar>
-                        <DropDown collectionNav={this.props.collectionNav} className={classes.DropDown} />
+                        <DropDown collectionNav={this.props.collectionNav} favNav={this.props.favNav} genreNav={this.props.genreNav} logOut={this.props.logOut} className={classes.DropDown} />
                         <Typography variant="title" color="inherit" className={classes.text}>
                             <h3>{this.props.currentView}</h3>
                         </Typography>

@@ -72,7 +72,7 @@ class DropDown extends React.Component {
                             <Grow in={open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
                                 <Paper>
                                     <MenuList role="menu">
-                                        <Nav collectionNav={this.props.collectionNav} />
+                                        <Nav collectionNav={this.props.collectionNav} favNav={this.props.favNav} genreNav={this.props.genreNav} logOut={this.props.logOut} />
                                     </MenuList>
                                 </Paper>
                             </Grow>

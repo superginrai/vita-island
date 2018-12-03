@@ -98,6 +98,30 @@ class FavoritesView extends Component {
         }
     };
 
+    addNew = () => {
+        this.props.history.push('/newGame');
+    }
+
+    localSearch = () => {
+        this.props.history.push('/search');
+    }
+
+    collectionNav = () => {
+        this.props.history.push('/collection');
+    }
+
+    favNav = () => {
+        this.props.history.push('/favorites');
+    }
+
+    genreNav = () => {
+        this.props.history.push('genre');
+    }
+
+    logOut = () => {
+        this.props.history.push('/home');
+    }
+
     componentDidMount() {
         this.props.dispatch(fetchUser());
         this.getFavorites();
@@ -124,7 +148,7 @@ class FavoritesView extends Component {
 
         return (
             <div>
-                <ButtonAppBar currentView="Favorites" />
+                <ButtonAppBar addNew={this.addNew} localSearch={this.localSearch} collectionNav={this.collectionNav} favNav={this.favNav} genreNav={this.genreNav} logOut={this.logOut} currentView="Favorites" />
                 {content}
             </div>
         );

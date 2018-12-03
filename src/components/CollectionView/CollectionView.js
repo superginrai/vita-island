@@ -107,6 +107,18 @@ class CollectionView extends Component {
         this.props.history.push('/collection');
     }
 
+    favNav = () => {
+        this.props.history.push('/favorites');
+    }
+
+    genreNav = () => {
+        this.props.history.push('genre');
+    }
+
+    logOut = () => {
+        this.props.history.push('/home');
+    }
+
     componentDidMount() {
         this.props.dispatch(fetchUser());
         this.getUsersGames();
@@ -124,7 +136,7 @@ class CollectionView extends Component {
         //   if (this.props.user.username) {
         content = (
             <div className="Collection">
-             <ButtonAppBar addNew={this.addNew} localSearch={this.localSearch} collectionNav={this.collectionNav} currentView="Your;Collection"/>
+             <ButtonAppBar addNew={this.addNew} localSearch={this.localSearch} collectionNav={this.collectionNav} favNav={this.favNav} genreNav={this.genreNav} logOut={this.logOut} currentView="Your;Collection"/>
             <br/>
                 {this.state.gameList.map(game =>
                     <GameCard key={game.id} game={game} title={game.title} image_url={game.image_url} genre={game.genre} favorite={game.favorite} delete={this.deleteGame} makeFavorite={this.makeFavorite} />)}
