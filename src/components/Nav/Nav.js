@@ -21,16 +21,16 @@ const Nav = (props) => {
   return (
     <div className={classes.root}>
       <List component="nav">
-        <ListItem button component="a" href="/home">
+        <ListItem button component="a" onClick={props.logOut}>
           <ListItemText primary="Log Out" />
         </ListItem>
-        <ListItem button component="a" href="/collection">
+        <ListItem button component="a" onClick={props.collectionNav}>
           <ListItemText primary="Your Collection" />
         </ListItem>
-        <ListItem button component="a" href="/favorites">
+        <ListItem button component="a" onClick={props.favNav}>
           <ListItemText primary="Favorites" />
         </ListItem>
-        <ListItem button component="a" href="/genre">
+        <ListItem button component="a" onClick={props.genreNav}>
           <ListItemText primary="Genres" />
         </ListItem>
       </List>

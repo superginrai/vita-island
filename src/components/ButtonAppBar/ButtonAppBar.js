@@ -45,7 +45,7 @@ class ButtonAppBar extends Component {
     }
 
     // addNew = () => {
-    //     this.props.history.push('/newGame');
+    //     this.props.history.push('newGame');
     // }
 
     render() {
@@ -54,17 +54,17 @@ class ButtonAppBar extends Component {
             <div className={classes.root}>
                 <AppBar className={classes.psx} position="fixed">
                     <Toolbar>
-                        <DropDown className={classes.DropDown} />
+                        <DropDown collectionNav={this.props.collectionNav} favNav={this.props.favNav} genreNav={this.props.genreNav} logOut={this.props.logOut} className={classes.DropDown} />
                         <Typography variant="title" color="inherit" className={classes.text}>
                             <h3>{this.props.currentView}</h3>
                         </Typography>
                         <Typography variant="title" className={classes.flex}>
                             {this.props.addOn}
                         </Typography>
-                        <IconButton component="a" href="/search" className={classes.button} aria-label="Search">
+                        <IconButton component="a" onClick={this.props.localSearch} className={classes.button} aria-label="Search">
                             <Search />
                         </IconButton>
-                        <Button component="a" href="/newGame" size="small" variant="contained" color="primary" className={classes.button}>
+                        <Button component="a" onClick={this.props.addNew} size="small" variant="contained" color="primary" className={classes.button}>
                             <Games /><FiberNew /></Button>
                     </Toolbar>
                 </AppBar>
