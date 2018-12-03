@@ -24,7 +24,7 @@ const Nav = (props) => {
         <ListItem button component="a" href="/home">
           <ListItemText primary="Log Out" />
         </ListItem>
-        <ListItem button component="a" href="/collection">
+        <ListItem button component="a" onClick={props.collectionNav}>
           <ListItemText primary="Your Collection" />
         </ListItem>
         <ListItem button component="a" href="/favorites">

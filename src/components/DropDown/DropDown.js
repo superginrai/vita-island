@@ -36,9 +36,12 @@ class DropDown extends React.Component {
         if (this.target1.contains(event.target)) {
             return;
         }
-
         this.setState({ open: false });
     };
+
+    // collectionNav = () => {
+    //     this.props.history.push('/collection');
+    // }
 
     render() {
         const { classes } = this.props;
@@ -69,7 +72,7 @@ class DropDown extends React.Component {
                             <Grow in={open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
                                 <Paper>
                                     <MenuList role="menu">
-                                        <Nav />
+                                        <Nav collectionNav={this.props.collectionNav} />
                                     </MenuList>
                                 </Paper>
                             </Grow>
