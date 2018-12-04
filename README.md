@@ -100,7 +100,7 @@ VALUES ('Action'),
 ### Next Steps
 
 - [ ] Next version in React Native. 
-- [ ] Ability to connect your user to your PSN profile via [PSN API](https://www.psnleaderboard.com/)
+- [ ] Ability to connect your username to your PSN profile via [PSN API](https://www.psnleaderboard.com/)
 - [ ] Look up games via barcode scan with [Barcode to PC](https://barcodetopc.com/) open source app.
 
 ## Authors
