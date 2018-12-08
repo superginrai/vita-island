@@ -1,6 +1,5 @@
 # VITA;island
 
-
 A Mobile-friendly app for collectors of physical video games for the PlayStation Vita.  Users can add games to their virtual collection using information from the IGDB API.  They can organize their collecion by genre and favorites.
 
 ## Built With
