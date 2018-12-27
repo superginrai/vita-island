@@ -99,6 +99,7 @@ VALUES ('Action'),
 
 ### Next Steps
 
+- [ ] Adapt to [IGDB API 3000](https://medium.com/igdb/its-here-the-new-igdb-api-f6ad745b53fe)
 - [ ] Next version in React Native. 
 - [ ] Ability to connect your username to your PSN profile via [PSN API](https://www.psnleaderboard.com/)
 - [ ] Look up games via barcode scan with [Barcode to PC](https://barcodetopc.com/) open source app.
