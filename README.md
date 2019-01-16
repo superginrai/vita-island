@@ -114,3 +114,4 @@ VALUES ('Action'),
 * [IGDB API](https://igdb.github.io/api/)
 
 
+an ```npm install``` and an ```npm start```
